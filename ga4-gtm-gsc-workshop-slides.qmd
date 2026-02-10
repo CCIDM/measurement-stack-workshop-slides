@@ -93,33 +93,78 @@ After taking this workshop, participants should be able to:
 - Create Google Account
 - Download/Setup <span class="text-citrus">RStudio</span>
 - Download/Setup <span class="text-teal">Git</span>
-- Access Starter Quarto Portfolio Website Repo <https://github.com/CCIDM/portfolio-website-template>
+- Access/Publish Starter Quarto Portfolio Website Repo <https://github.com/CCIDM/portfolio-website-template>
 
 ::: {.callout-note}
 Optional to Follow Along; Required to Deploy
 :::
 
-::: {.notes}
-- The items are only needed if they want to publish/deploy the Quarto site during/after the workshop.
-- If they are only learning the workflow conceptually, they can still follow along without deploying.
-:::
+### No-Install Method (Posit Cloud)
+
+1.  **Create Account:** Log in to [posit.cloud](https://posit.cloud) (Free Tier).
+2.  **Import Template:**
+    * Click **New Project** > **New Project from Git Repository**.
+    * Paste this URL: `https://github.com/CCIDM/portfolio-website-template.git`
+3.  **Edit:** Open `index.qmd` to customize your content.
+4.  **Publish:**
+    * Go to Terminal tab, enter `quarto publish netlify`. You will be prompted to login to netlify. Create account or login.
 
 
 ---
 
-## Trinity of Google Data Collection
+## Trinity of Google Data Collection (10 Min)
 
-**1. Google Tag Manager (GTM): "The Brain"**
+::: {.columns .trinity}
 
-**2. Google Analytics 4 (GA4): "The Database"**
+::: {.column width="33.33%"}
+#### Google Tag Manager
 
-**3. Google Search Console (GSC): "The Visibility Health Check"**
+<div class="iconbox">
+  ![](images/ic_tag_manager.svg){.icon}
+</div>
+
+#### "The Brain/Eyes"
+
+**Tag management system** that lets you configure, deploy, and troubleshoot tracking tags from a web interface—no code changes needed. (Facebook, EventBrite, etc.)
+:::
+
+::: {.column width="33.33%"}
+#### Google Analytics 4
+
+<div class="iconbox">
+  ![](images/ic_analytics.svg){.icon}
+</div>
+
+#### "The Database"
+
+**Next-gen analytics** collecting event-based data from websites/apps to understand full customer journeys with privacy controls and predictive insights.
+:::
+
+::: {.column width="33.33%"}
+#### Google Search Console
+
+<div class="iconbox">
+  ![](images/logo_search_console.svg){.icon}
+</div>
+
+#### "The Search Health Check"
+
+**Webmaster tool** to monitor indexing, search performance, crawl errors, and optimize site visibility in Google Search results.
+:::
+
+:::
+
+
 
 ## How they Connect
 
 ::: {.center}
 ![](images/trinity-diagram.png){width=85% fig-alt="Diagram showing data flow between GTM, GA4, and GSC."}
 :::
+
+- Install <span class="text-cpp-green">GTM</span> on the site (not GA4 code directly)
+- <span class="text-cpp-green">GTM</span> sends events to <span class="text-cpp-gold">GA4</span>
+- Link <span class="text-teal">GSC</span> to <span class="text-cpp-gold">GA4</span> for organic query + landing-page reporting
 
 ::: {.notes}
 - Trinity of Data Collection:
@@ -131,238 +176,151 @@ Optional to Follow Along; Required to Deploy
 
 ---
 
-## How they connect
-
-**Rule #1:** We do *not* put GA4 code directly on the site
-**Rule #2:** We put **GTM code** on the site
-**Rule #3:** GTM sends the data to GA4
-
-- Install <span class="text-cpp-green">GTM</span> on the site (not GA4 code directly)
-- <span class="text-cpp-green">GTM</span> sends events to <span class="text-cpp-gold">GA4</span>
-- Link <span class="text-teal">GSC</span> to <span class="text-cpp-gold">GA4</span> for organic query + landing-page reporting
-
-::: {.notes}
-Source content:
-5) How They Connect: Explain that we do not put GA4 code on the site; we put GTM code on the site, and GTM sends data to GA4
-6) Provide Links to Google services, talk about invites.
-
-Practical reminders:
-- GA4 “Measurement ID” lives in GA4 Admin → Data Streams.
-- GTM “Container ID” is separate and is what’s embedded on the site.
-:::
-
----
-
 ## Quick access links
 
-:::: {.columns}
-::: {.column width="55%"}
 - <span class="text-cpp-gold">GA4</span>: <https://analytics.google.com/>
 - <span class="text-cpp-green">GTM</span>: <https://tagmanager.google.com/>
 - <span class="text-teal">GSC</span>: <https://search.google.com/search-console/>
 
-**Today’s rule:** use one Google account across tools.
-:::
-::: {.column width="45%"}
-<div class="placeholder-box">Visual placeholder: QR codes / short links</div>
-:::
 
-::::
 
-::: {.notes}
-- Prompt students to accept invites before you start the build steps.
-- If they’re locked out, that becomes a hard blocker later (especially for GTM publish).
+::: {.callout-tip}
+Use one **Google account** across tools.
 :::
 
 ---
 
-## Technical Implementation (overview)
+## Technical Implementation - GTM/GA4 (25 Min)
 
-- Step 1: The Setup
-. . .
-- Step 2: The Quarto Integration
-. . .
-- Step 3: The GA4 Configuration Tag
-. . .
-- Step 4: Publishing
-. . .
-- Step 5: Validation
+### **Goal**
+Connect our **Quarto** site to the **Google Marketing Platform** (GA4 + GTM).
 
-::: {.notes}
-- Use this slide to keep attention on sequence.
-- Then slow down and execute each step with check-ins.
+### **Assumptions**
+To follow along, you need:
+
+1.  **A Published Website:** Your site is live (e.g., Netlify, GitHub Pages).
+2.  **Admin Access:** You have the ability to edit the source code or CMS settings.
+
+::: {.callout-note}
+## Why this matters
+We are moving from "static pages" to "measurable data" by injecting tracking codes into your live environment.
 :::
 
 ---
 
-## Step 1 — The Setup
+## The Account Setup
+
+::: {.callout-tip}
+## GA4: <https://analytics.google.com/> <br> GTM: <https://tagmanager.google.com/>
+:::
+
+Before we touch the code/website, we need the containers.
+
+1.  **Create GTM Account:** Get your container ID (`GTM-XXXXXX`).
+2.  **Install GTM Code:** Place the snippets on your website (`<head>` and `<body>`).
+3.  **Create GA4 Property:** Get your Measurement ID (`G-XXXXXXXX`).
+4.  **Connect in GTM:** Create a "Google Tag" inside GTM and paste your GA4 ID.
+5.  **Publish:** Push the changes in GTM to make GA4 live.
+
+## Create GTM Container
 
 :::: {.columns}
-::: {.column width="55%"}
-- Create <span class="text-cpp-gold">GA4</span> property
-- Create a <span class="text-cpp-green">GTM</span> account + container
-- Confirm you have:
-  - Admin access
-  - GA4 Measurement ID (<span class="text-cpp-gold">G-XXXXXXXX</span>)
-  
-:::
-::: {.column width="45%"}
-<div class="placeholder-box">Visual placeholder: GA4 property + Data Stream screen</div>
 
+::: {.column width="50%"}
+### The Setup
+1.  **Log in:** [tagmanager.google.com](https://tagmanager.google.com).
+2.  **Create Account:** Enter Company Name.
+3.  **Create Container:** Enter Domain (e.g., `mysite.com`).
+4.  **Select Platform:** Choose **Web**.
+5.  **Install:** Get the `<head>` and `<body>` scripts.
+:::
+
+::: {.column width="50%"}
+### Why GTM?
+* **The Box Metaphor:** GTM is the empty box; GA4 is just one tool you put inside it.
+* **Efficiency:** You install the GTM code **once**. Future changes (Facebook Pixel, LinkedIn Insight, GA4 Events) happen inside GTM, not your site code.
 :::
 
 ::::
 
-::: {.notes}
-Source content:
-7) Step 1: The Setup:
-a. Greate GA4 Property
-b. Create a Google Tag Manager Account and Container
-
-Teaching move:
-- If students are in groups, assign one person to be “navigator” and one to be “builder” to reduce click-errors.
-:::
-
 ---
 
-## Step 2 — Quarto Integration
 
-**Action:** copy the <span class="text-cpp-green">GTM</span> snippets
-
-- `<script>` goes in **Head**
-- `<noscript>` goes in **Body**
-
-### include-in-header.html
-
-```{=text}
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-ABC12345');</script>
-<!-- End Google Tag Manager -->
-```
-
-### include-before-body.html
-
-```{=text}
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ABC12345"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-```
-
-::: {.notes}
-Source content:
-8) Step 2: The Quarto Integration:
-a. Action: Copy the GTM <script> (Head) and <noscript> (Body) snippets.
-b. Implementation: Paste snippets into include-in-header.html and include-before-body.html, then reference these in the _quarto.yml file.
-
-Tip:
-
-- Emphasize “Head vs Body” placement because that’s the most common mistake.
-
-:::
-
----
-
-## Step 2 — Wire it up in `_quarto.yml`
-
-```yaml
-# _quarto.yml (site/project root)
-project:
-  type: website
-
-format:
-  html:
-    include-in-header: include-in-header.html
-    include-before-body: include-before-body.html
-```
-
-- Re-render locally **or** publish to Netlify/GitHub Pages
-
-::: {.notes}
-Source content:
-8c) Render: Re-render the Quarto site locally or publish to Netlify/GitHub Pages.
-
-Coaching:
-- If they deploy: remind them GTM publish and website publish are separate actions.
-:::
-
----
-
-## Step 3 — GA4 Configuration Tag (in GTM)
-
-- Create a **Google Tag** (formerly Config Tag)
-- Measurement ID: <span class="text-cpp-gold">G-XXXXXXXX</span>
-- Trigger: **All Pages**
-
-```text
-GTM Tag Configuration
----------------------
-Tag Type: Google Tag
-Measurement ID: G-XXXXXXXX
-Trigger: All Pages
-```
-
-::: {.notes}
-Source content:
-9) Step 3: The GA4 Configuration Tag:
-a. In GTM, create a "Google Tag" (formerly Config Tag).
-b. Paste the GA4 Measurement ID (G-XXXXXXXX). ((Find this in GA4 Admin > Data Collection > Data Streams > Click the Arrow))
-c. Trigger: All Pages.
-
-Emphasize:
-- This is baseline tracking. We’re verifying page_view first before adding custom events.
-
-:::
-
----
-
-## Step 4 — Publishing (do this now)
-
-- In <span class="text-cpp-green">GTM</span>, click <span class="highlight">SUBMIT</span>
-- Then click <span class="highlight">PUBLISH</span>
-
-::: {.notes}
-Source content:
-10) Step 4: Publishing:
-a. Critical Step: Students must hit SUBMIT and PUBLISH in GTM now.
-
-Common failure mode:
-- Students create tags but never publish, then wonder why GA4 is empty.
-:::
-
----
-
-## Step 5 — Validation
+## Create GA4 Property
 
 :::: {.columns}
-::: {.column width="55%"}
-- Open **GA4 DebugView**
-- Open the site in a new tab
-- Look for <span class="badge badge-green">page_view</span> appearing in the timeline
+
+::: {.column width="50%"}
+#### The Setup
+1. Go to **Analytics** > **Admin**.
+2. Click **Create Account**.
+3. Follow the wizard to create your **Property**.
+4. **Save:** Copy the **Measurement ID** (`G-XXXXXXXX`) for your website code.
 :::
-::: {.column width="45%"}
-<div class="placeholder-box placeholder-tall">Visual placeholder: DebugView timeline showing <strong>page_view</strong></div>
+
+::: {.column width="50%"}
+#### Best Practices
+* **One Property Rule:** Most businesses only need **1 Property**.
+* **Cross-Device:** Combine your Website and App data in the *same* property for better user tracking.
+* **When to split?** Only use multiple properties for different **Regions** (Timezones/Currencies) or **Marketing Teams**.
+:::
+
+::::
+:::
+
+
+
+---
+
+## Connect GA4 to GTM
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### The Connection
+1.  **New Tag:** Select **Google Tag**.
+2.  **ID:** Paste `G-XXXXXXXX`.
+3.  **Trigger:** Choose **Initialization - All Pages**.
+4.  **Save:** Name it "GA4 Config".
+:::
+
+::: {.column width="50%"}
+### The Launch
+1.  **Submit:** Click the blue button in the top right.
+2.  **Version:** Give it a name (e.g., "Initial GA4 Launch").
+3.  **Publish:** This pushes your changes to the live website.
 :::
 
 ::::
 
-::: {.notes}
-Source content:
-11) Step 5: Validation:
-a. Use GA4 DebugView (Admin > Data Display > DebugView).
-b. Open the site in a new tab. Look for the "page_view" event appearing in the timeline
-c. Expected Outcome: We will see events firing off in GA4.
+> **Note:** Until you hit **Publish**, your changes are only saved in a "Draft" version.
 
-Also mention:
-- GTM Preview/Debug: use it when you need to confirm “did the tag fire?”
-- DebugView confirms “did GA4 receive it?”
+
+
+
+---
+
+
+## Validation
+
+1.  **Open DebugView:**
+    - Go to **GA4 Admin** > **Data Display** > **DebugView**.
+2.  **Trigger Data:**
+    - Open your website in a new tab (or use GTM Preview Mode).
+    - Click around to generate events.
+3.  **Verify:**
+    - Look for the blue icons appearing on the timeline.
+    - Confirm the `page_view` event is listed.
+
+::: {.callout-important}
+## Expected Outcome
+If you see events populating the timeline in real-time, your connection is successful. If the timeline is empty, check if your ad blocker is on!
 :::
+
+
+
+
+
 
 ---
 
