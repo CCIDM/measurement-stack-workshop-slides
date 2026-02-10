@@ -2,7 +2,7 @@
 title: "Measuring Digital Marketing Performance"
 subtitle: "GA4 + GTM + GSC • UTMs • Key Events"
 author: "Jarrod Griffin"
-institute: "Cal Poly Pomona"
+institute: "College of Business Administration - Cal Poly Pomona"
 date: "today"
 date-format: "M/D/YYYY"
 format:
@@ -17,7 +17,7 @@ format:
     link-external-newwindow: true
     #chalkboard: true #cannot use with self-contained
     embed-resources: true
-    #multiplex: true
+    multiplex: true
     width: 1600
     height: 900
     margin: 0.1
@@ -32,28 +32,39 @@ execute:
 ---
 
 
-## Welcome
+## Greetings and Introductions
 
-- Build reliable baseline tracking with <span class="text-cpp-green">GTM</span> → <span class="text-cpp-gold">GA4</span>
-- Add <span class="text-teal">GSC</span> to bring organic search visibility into the same workflow
-- Standardize <span class="text-citrus">UTMs</span> and measure outcomes with <span class="text-rose">Key Events</span>
+-   Jae Jung, Ph.D., Professor of Marketing, Director of CCIDM
+-   Jarrod Griffin, Master's Student - Digital Marketing, Graduate Fellow, CCIDM
 
-::: {.notes}
-- Greetings and introduction to presenters.
-- Frame the “Why”: this is the bridge from marketing theory to marketing operations.
-- Set expectations: by the end, students will have a working baseline implementation, validation workflow, a GSC linkage path, and standardized campaign tracking habits.
+::: {.callout-tip}
+## Live slides available at <https://ccidm.github.io/cba-symposium-quarto>
 :::
 
----
+## Introduction & Orientation
+
+- **The Objective:** Moving from marketing theory to Marketing Operations.
+- **The Career Impact:** Why this technical skillset matters for your future role.
+- **The Goal:** Gaining the ability to not just plan campaigns, but measure and optimize them.
+
+::: {.notes}
+"Welcome everyone. Today isn't just about concepts; it is about the 'Why' behind the data."
+
+"In your classes, you learn marketing theory. Today, we make the move from theory to Marketing Operations."
+
+"Employers need people who can prove their strategies work. By the end of this, you will have the technical skills to gather the data that validates your marketing decisions."
+
+:::
+
 
 ## Agenda
 
 - Introduction & Orientation (5 min)
-- Conceptual Framework: The Data Ecosystem (10 min)
-- Technical Implementation (25 min)
-- Search Visibility: Google Search Console (15 min)
-- Campaign Tracking: UTM Parameters (15 min)
-- Performance Measurement: Key Events (10 min)
+- **Conceptual Framework (10 Min):** The Data Ecosystem (GA4, GTM, GSC)
+- **Technical Implementation (25 Min):** Setting up the environment
+- **Search Visibility (15 Min):** Google Search Console integration
+- **Campaign Tracking (15 Min):** Mastering UTM parameters
+- **Performance Measurement (10 Min):** Defining and tracking Key Events
 
 
 ---
@@ -76,72 +87,39 @@ After taking this workshop, participants should be able to:
 
 ::::
 
-::: {.notes}
-- Read these quickly so students can self-check expectations.
-- Tell them you’ll return to these as a “definition of done” at the end.
-:::
 
----
+## Workshop Prep
 
-## Before the workshop
-
-:::: {.columns}
-::: {.column width="50%"}
-**Required**
-
-- Create Google Account and Accept Invite to <span class="text-cpp-green">GTM</span>/<span class="text-cpp-gold">GA4</span>.
-:::
-::: {.column width="50%"}
-**Optional (used for deployment)**
-
+- Create Google Account
 - Download/Setup <span class="text-citrus">RStudio</span>
 - Download/Setup <span class="text-teal">Git</span>
-- Access Starter Website Repo (Not yet created)
+- Access Starter Quarto Portfolio Website Repo <https://github.com/CCIDM/portfolio-website-template>
+
+::: {.callout-note}
+Optional to Follow Along; Required to Deploy
 :::
 
-::::
-
 ::: {.notes}
-- The optional items are only needed if they want to publish/deploy the Quarto site during/after the workshop.
+- The items are only needed if they want to publish/deploy the Quarto site during/after the workshop.
 - If they are only learning the workflow conceptually, they can still follow along without deploying.
 :::
 
+
 ---
 
-## Introduction & Orientation
+## Trinity of Google Data Collection
 
-- Who we are + what we’re building
-- The career “Why”: measurement → decisions
-- How we’ll work: **build**, **publish**, **validate**
+**1. Google Tag Manager (GTM): "The Brain"**
 
-::: {.notes}
-Source content:
-1) Greetings and Introduction to Presenters  
-2) The “Why”: why this matters for their careers  
-   - Move from marketing theory to marketing operations  
-3) Expected Learning outcomes & Agenda
+**2. Google Analytics 4 (GA4): "The Database"**
 
+**3. Google Search Console (GSC): "The Visibility Health Check"**
+
+## How they Connect
+
+::: {.center}
+![](images/trinity-diagram.png){width=85% fig-alt="Diagram showing data flow between GTM, GA4, and GSC."}
 :::
-
----
-
-## Trinity of Data Collection
-
-```{mermaid}
-flowchart LR
-  subgraph Site[Website / Quarto site]
-    U[Users + content interactions]
-  end
-
-  GTM[[GTM<br/>The Brain]]
-  GA4[(GA4<br/>The Database)]
-  GSC[[GSC<br/>Search Health Check]]
-
-  U -->|page_view + events| GTM
-  GTM -->|sends events| GA4
-  GSC -. monitors .-> Site
-  GSC -->|queries • clicks • impressions| GA4
-```
 
 ::: {.notes}
 - Trinity of Data Collection:
@@ -154,6 +132,10 @@ flowchart LR
 ---
 
 ## How they connect
+
+**Rule #1:** We do *not* put GA4 code directly on the site
+**Rule #2:** We put **GTM code** on the site
+**Rule #3:** GTM sends the data to GA4
 
 - Install <span class="text-cpp-green">GTM</span> on the site (not GA4 code directly)
 - <span class="text-cpp-green">GTM</span> sends events to <span class="text-cpp-gold">GA4</span>
