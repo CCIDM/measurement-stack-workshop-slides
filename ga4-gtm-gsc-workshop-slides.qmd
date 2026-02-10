@@ -1,62 +1,36 @@
 ---
 title: "Measuring Digital Marketing Performance"
 subtitle: "GA4 + GTM + GSC • UTMs • Key Events"
-author: "Workshop"
-date: "2026-02-10"
+author: "Jarrod Griffin"
+institute: "Cal Poly Pomona"
+date: "today"
+date-format: "M/D/YYYY"
 format:
   revealjs:
-    theme: [default, custom.scss]
-    slide-number: true
-    preview-links: true
-    logo: "images/cpp-logo.png"  # <-- replace with your actual logo path
     center: false
-    progress: true
-    controls: true
-    navigation-mode: linear
-    hash: true
-    transition: fade
-    mermaid: 
-      theme: neutral
-    code-copy: true
+    logo: "logos/ccidm-cpp logo.png"
+    theme: [default, theme.scss]
+    slide-number: true
+    toc: true
+    toc-depth: 1
+    code-link: true
+    link-external-newwindow: true
+    #chalkboard: true #cannot use with self-contained
+    embed-resources: true
+    #multiplex: true
+    width: 1600
+    height: 900
+    margin: 0.1
+    minScale: 0.2
+    maxScale: 2.0
+    scrollable: true
+    incremental: true
+    html:
+      unsafe: true
+execute: 
+  freeze: auto
 ---
 
-```{=html}
-<style>
-/* Utility color classes (match custom.scss variables) */
-.text-cpp-green { color: #005030; }
-.text-cpp-gold  { color: #FFB81C; }
-.text-avocado   { color: #A4D65E; }
-.text-citrus    { color: #FF7500; }
-.text-teal      { color: #00838A; }
-.text-rose      { color: #b52b4c; }
-.text-black     { color: #121212; }
-
-/* Small highlight badges (works alongside .highlight in custom.scss) */
-.badge { padding: 0.08em 0.35em; border-radius: 0.25em; color: #FFFFFF; }
-.badge-green { background: #005030; }
-.badge-citrus { background: #FF7500; }
-
-/* Visual placeholders (swap with screenshots as you build the deck) */
-.placeholder-box {
-  border: 3px dashed #CFBAB0;
-  border-radius: 12px;
-  padding: 0.9em;
-  min-height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.95em;
-  color: #121212;
-  background: rgba(226,232,224,0.4);
-}
-.placeholder-tall { min-height: 320px; }
-
-/* Optional: compact ULs on dense slides (custom.scss sets ULs large) */
-.compact ul { font-size: 1.6rem !important; }
-.compact ul ul { font-size: 1.3rem !important; }
-.compact ul ul ul { font-size: 1.1rem !important; }
-</style>
-```
 
 ## Welcome
 
@@ -81,10 +55,6 @@ format:
 - Campaign Tracking: UTM Parameters (15 min)
 - Performance Measurement: Key Events (10 min)
 
-::: {.notes}
-- Emphasize this is a live build + validation session, not a lecture-only session.
-- Encourage “follow along” and to pause you when they hit a mismatch.
-:::
 
 ---
 
@@ -94,15 +64,16 @@ After taking this workshop, participants should be able to:
 
 :::: {.columns}
 ::: {.column width="50%"}
-1.	Explain how Google Analytics 4 (GA4), Google Tag Manager (GTM), and Google Search Console (GSC) work together to measure and improve digital marketing performance.
-2.	Configure Google Analytics 4 (GA4) for a website using Google Tag Manager (GTM) to ensure reliable baseline tracking.
-3.	Validate and troubleshoot GA4 event tracking using GTM Preview/Debug tools to confirm accurate event collection.
+1.	**Explain** how Google Analytics 4 (GA4), Google Tag Manager (GTM), and Google Search Console (GSC) work together to measure and improve digital marketing performance.
+2.	**Configure Google Analytics 4 (GA4)** for a website using Google Tag Manager (GTM) to ensure reliable baseline tracking.
+3.	**Validate and troubleshoot** GA4 event tracking using GTM Preview/Debug tools to confirm accurate event collection.
 :::
 ::: {.column width="50%"}
-4.	Configure Google Search Console (GSC) and connect to GA4 to incorporate organic search query and landing-page performance data.
-5.	Build standardized UTM parameters to track marketing campaigns consistently across channels and avoid attribution errors.
-6.	Set up and interpret GA4 Key Events  to measure marketing outcomes.
+4.	**Configure Google Search Console (GSC) and connect to GA4** to incorporate organic search query and landing-page performance data.
+5.	**Build standardized UTM parameters** to track marketing campaigns consistently across channels and avoid attribution errors.
+6.	**Set up and interpret GA4 Key Events**  to measure marketing outcomes.
 :::
+
 ::::
 
 ::: {.notes}
@@ -117,14 +88,17 @@ After taking this workshop, participants should be able to:
 :::: {.columns}
 ::: {.column width="50%"}
 **Required**
+
 - Create Google Account and Accept Invite to <span class="text-cpp-green">GTM</span>/<span class="text-cpp-gold">GA4</span>.
 :::
 ::: {.column width="50%"}
 **Optional (used for deployment)**
+
 - Download/Setup <span class="text-citrus">RStudio</span>
 - Download/Setup <span class="text-teal">Git</span>
 - Access Starter Website Repo (Not yet created)
 :::
+
 ::::
 
 ::: {.notes}
@@ -146,6 +120,7 @@ Source content:
 2) The “Why”: why this matters for their careers  
    - Move from marketing theory to marketing operations  
 3) Expected Learning outcomes & Agenda
+
 :::
 
 ---
@@ -209,6 +184,7 @@ Practical reminders:
 ::: {.column width="45%"}
 <div class="placeholder-box">Visual placeholder: QR codes / short links</div>
 :::
+
 ::::
 
 ::: {.notes}
@@ -246,10 +222,13 @@ Practical reminders:
 - Confirm you have:
   - Admin access
   - GA4 Measurement ID (<span class="text-cpp-gold">G-XXXXXXXX</span>)
+  
 :::
 ::: {.column width="45%"}
 <div class="placeholder-box">Visual placeholder: GA4 property + Data Stream screen</div>
+
 :::
+
 ::::
 
 ::: {.notes}
@@ -271,9 +250,27 @@ Teaching move:
 - `<script>` goes in **Head**
 - `<noscript>` goes in **Body**
 
-```text
-include-in-header.html  ← paste the <script> snippet
-include-before-body.html ← paste the <noscript> snippet
+### include-in-header.html
+
+```{=text}
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-ABC12345');</script>
+<!-- End Google Tag Manager -->
+```
+
+### include-before-body.html
+
+```{=text}
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ABC12345"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 ```
 
 ::: {.notes}
@@ -283,7 +280,9 @@ a. Action: Copy the GTM <script> (Head) and <noscript> (Body) snippets.
 b. Implementation: Paste snippets into include-in-header.html and include-before-body.html, then reference these in the _quarto.yml file.
 
 Tip:
+
 - Emphasize “Head vs Body” placement because that’s the most common mistake.
+
 :::
 
 ---
@@ -336,6 +335,7 @@ c. Trigger: All Pages.
 
 Emphasize:
 - This is baseline tracking. We’re verifying page_view first before adding custom events.
+
 :::
 
 ---
@@ -367,6 +367,7 @@ Common failure mode:
 ::: {.column width="45%"}
 <div class="placeholder-box placeholder-tall">Visual placeholder: DebugView timeline showing <strong>page_view</strong></div>
 :::
+
 ::::
 
 ::: {.notes}
@@ -417,6 +418,7 @@ Facilitation:
 - HTML tag (WordPress/CMS users)
 - GA4/GTM (best if GA4 or GTM already exists)
 :::
+
 ::::
 
 ::: {.notes}

@@ -241,3 +241,20 @@ $font-body: Arial, sans-serif;
   0%   { background-color: $cpp-green; }
   100% { background-color: $cpp-gold; }
 }
+
+/* Utility Classes */
+.text-cpp-green { color: $cpp-green; }
+.text-cpp-gold  { color: $cpp-gold; }
+.text-avocado   { color: $avocado; }
+.text-citrus    { color: #FF7500; }
+.text-teal      { color: $teal; }
+.text-rose      { color: $rose; }
+.text-black     { color: $black; }
+
+.badge { 
+  padding: 0.08em 0.35em; 
+  border-radius: 0.25em; 
+  color: $white; 
+}
+.badge-green { background-color: $cpp-green; }
+.badge-citrus { background-color: $citrus; }

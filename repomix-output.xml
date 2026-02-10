@@ -1,0 +1,966 @@
+This file is a merged representation of a subset of the codebase, containing files not matching ignore patterns, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching these patterns are excluded: *.html
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+includes/
+  gtm-body.html
+  gtm-head.html
+logos/
+  CCIDM Logo 1.png
+  ccidm-cpp logo dark.png
+  ccidm-cpp logo.png
+  CPP_Horizontal_2C_Gold_RGB-700px.png
+  CPP_Horizontal_2C_Green_RGB-700px.png
+  CPP_Stacked_2C_Gold_RGB-500px.png
+  CPP_Stacked_2C_Green_RGB-500px.png
+ga4-gtm-gsc-workshop-slides.qmd
+theme.scss
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="includes/gtm-body.html">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MB2RK37Z"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</file>
+
+<file path="includes/gtm-head.html">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MB2RK37Z');</script>
+<!-- End Google Tag Manager -->
+</file>
+
+<file path="ga4-gtm-gsc-workshop-slides.qmd">
+---
+title: "Measuring Digital Marketing Performance"
+subtitle: "GA4 + GTM + GSC • UTMs • Key Events"
+author: "Jarrod Griffin"
+institute: "Cal Poly Pomona"
+date: "today"
+date-format: "M/D/YYYY"
+format:
+  revealjs:
+    center: false
+    logo: "logos/ccidm-cpp logo.png"
+    theme: [default, theme.scss]
+    slide-number: true
+    toc: true
+    toc-depth: 1
+    code-link: true
+    link-external-newwindow: true
+    #chalkboard: true #cannot use with self-contained
+    embed-resources: true
+    #multiplex: true
+    width: 1600
+    height: 900
+    margin: 0.1
+    minScale: 0.2
+    maxScale: 2.0
+    scrollable: true
+    incremental: true
+    html:
+      unsafe: true
+execute: 
+  freeze: auto
+---
+
+
+## Welcome
+
+- Build reliable baseline tracking with <span class="text-cpp-green">GTM</span> → <span class="text-cpp-gold">GA4</span>
+- Add <span class="text-teal">GSC</span> to bring organic search visibility into the same workflow
+- Standardize <span class="text-citrus">UTMs</span> and measure outcomes with <span class="text-rose">Key Events</span>
+
+::: {.notes}
+- Greetings and introduction to presenters.
+- Frame the “Why”: this is the bridge from marketing theory to marketing operations.
+- Set expectations: by the end, students will have a working baseline implementation, validation workflow, a GSC linkage path, and standardized campaign tracking habits.
+:::
+
+---
+
+## Agenda
+
+- Introduction & Orientation (5 min)
+- Conceptual Framework: The Data Ecosystem (10 min)
+- Technical Implementation (25 min)
+- Search Visibility: Google Search Console (15 min)
+- Campaign Tracking: UTM Parameters (15 min)
+- Performance Measurement: Key Events (10 min)
+
+
+---
+
+## Learning Outcomes:
+
+After taking this workshop, participants should be able to:
+
+:::: {.columns}
+::: {.column width="50%"}
+1.	**Explain** how Google Analytics 4 (GA4), Google Tag Manager (GTM), and Google Search Console (GSC) work together to measure and improve digital marketing performance.
+2.	**Configure Google Analytics 4 (GA4)** for a website using Google Tag Manager (GTM) to ensure reliable baseline tracking.
+3.	**Validate and troubleshoot** GA4 event tracking using GTM Preview/Debug tools to confirm accurate event collection.
+:::
+::: {.column width="50%"}
+4.	**Configure Google Search Console (GSC) and connect to GA4** to incorporate organic search query and landing-page performance data.
+5.	**Build standardized UTM parameters** to track marketing campaigns consistently across channels and avoid attribution errors.
+6.	**Set up and interpret GA4 Key Events**  to measure marketing outcomes.
+:::
+
+::::
+
+::: {.notes}
+- Read these quickly so students can self-check expectations.
+- Tell them you’ll return to these as a “definition of done” at the end.
+:::
+
+---
+
+## Before the workshop
+
+:::: {.columns}
+::: {.column width="50%"}
+**Required**
+
+- Create Google Account and Accept Invite to <span class="text-cpp-green">GTM</span>/<span class="text-cpp-gold">GA4</span>.
+:::
+::: {.column width="50%"}
+**Optional (used for deployment)**
+
+- Download/Setup <span class="text-citrus">RStudio</span>
+- Download/Setup <span class="text-teal">Git</span>
+- Access Starter Website Repo (Not yet created)
+:::
+
+::::
+
+::: {.notes}
+- The optional items are only needed if they want to publish/deploy the Quarto site during/after the workshop.
+- If they are only learning the workflow conceptually, they can still follow along without deploying.
+:::
+
+---
+
+## Introduction & Orientation
+
+- Who we are + what we’re building
+- The career “Why”: measurement → decisions
+- How we’ll work: **build**, **publish**, **validate**
+
+::: {.notes}
+Source content:
+1) Greetings and Introduction to Presenters  
+2) The “Why”: why this matters for their careers  
+   - Move from marketing theory to marketing operations  
+3) Expected Learning outcomes & Agenda
+
+:::
+
+---
+
+## Trinity of Data Collection
+
+```{mermaid}
+flowchart LR
+  subgraph Site[Website / Quarto site]
+    U[Users + content interactions]
+  end
+
+  GTM[[GTM<br/>The Brain]]
+  GA4[(GA4<br/>The Database)]
+  GSC[[GSC<br/>Search Health Check]]
+
+  U -->|page_view + events| GTM
+  GTM -->|sends events| GA4
+  GSC -. monitors .-> Site
+  GSC -->|queries • clicks • impressions| GA4
+```
+
+::: {.notes}
+- Trinity of Data Collection:
+  a. GTM (Google Tag Manager): The Brain, Controls what data is sent and when.  
+  b. GA4 (Google Analytics 4): The Database, Stores and reports the data.  
+  c. GSC (Google Search Console): The Search Health Check: Monitors organic search visibility.
+- Instructional design angle: students should be able to name the role of each tool in one sentence.
+:::
+
+---
+
+## How they connect
+
+- Install <span class="text-cpp-green">GTM</span> on the site (not GA4 code directly)
+- <span class="text-cpp-green">GTM</span> sends events to <span class="text-cpp-gold">GA4</span>
+- Link <span class="text-teal">GSC</span> to <span class="text-cpp-gold">GA4</span> for organic query + landing-page reporting
+
+::: {.notes}
+Source content:
+5) How They Connect: Explain that we do not put GA4 code on the site; we put GTM code on the site, and GTM sends data to GA4
+6) Provide Links to Google services, talk about invites.
+
+Practical reminders:
+- GA4 “Measurement ID” lives in GA4 Admin → Data Streams.
+- GTM “Container ID” is separate and is what’s embedded on the site.
+:::
+
+---
+
+## Quick access links
+
+:::: {.columns}
+::: {.column width="55%"}
+- <span class="text-cpp-gold">GA4</span>: <https://analytics.google.com/>
+- <span class="text-cpp-green">GTM</span>: <https://tagmanager.google.com/>
+- <span class="text-teal">GSC</span>: <https://search.google.com/search-console/>
+
+**Today’s rule:** use one Google account across tools.
+:::
+::: {.column width="45%"}
+<div class="placeholder-box">Visual placeholder: QR codes / short links</div>
+:::
+
+::::
+
+::: {.notes}
+- Prompt students to accept invites before you start the build steps.
+- If they’re locked out, that becomes a hard blocker later (especially for GTM publish).
+:::
+
+---
+
+## Technical Implementation (overview)
+
+- Step 1: The Setup
+. . .
+- Step 2: The Quarto Integration
+. . .
+- Step 3: The GA4 Configuration Tag
+. . .
+- Step 4: Publishing
+. . .
+- Step 5: Validation
+
+::: {.notes}
+- Use this slide to keep attention on sequence.
+- Then slow down and execute each step with check-ins.
+:::
+
+---
+
+## Step 1 — The Setup
+
+:::: {.columns}
+::: {.column width="55%"}
+- Create <span class="text-cpp-gold">GA4</span> property
+- Create a <span class="text-cpp-green">GTM</span> account + container
+- Confirm you have:
+  - Admin access
+  - GA4 Measurement ID (<span class="text-cpp-gold">G-XXXXXXXX</span>)
+  
+:::
+::: {.column width="45%"}
+<div class="placeholder-box">Visual placeholder: GA4 property + Data Stream screen</div>
+
+:::
+
+::::
+
+::: {.notes}
+Source content:
+7) Step 1: The Setup:
+a. Greate GA4 Property
+b. Create a Google Tag Manager Account and Container
+
+Teaching move:
+- If students are in groups, assign one person to be “navigator” and one to be “builder” to reduce click-errors.
+:::
+
+---
+
+## Step 2 — Quarto Integration
+
+**Action:** copy the <span class="text-cpp-green">GTM</span> snippets
+
+- `<script>` goes in **Head**
+- `<noscript>` goes in **Body**
+
+### include-in-header.html
+
+```{=text}
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-ABC12345');</script>
+<!-- End Google Tag Manager -->
+```
+
+### include-before-body.html
+
+```{=text}
+include-before-body.html
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ABC12345"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+```
+
+::: {.notes}
+Source content:
+8) Step 2: The Quarto Integration:
+a. Action: Copy the GTM <script> (Head) and <noscript> (Body) snippets.
+b. Implementation: Paste snippets into include-in-header.html and include-before-body.html, then reference these in the _quarto.yml file.
+
+Tip:
+
+- Emphasize “Head vs Body” placement because that’s the most common mistake.
+:::
+
+---
+
+## Step 2 — Wire it up in `_quarto.yml`
+
+```yaml
+# _quarto.yml (site/project root)
+project:
+  type: website
+
+format:
+  html:
+    include-in-header: include-in-header.html
+    include-before-body: include-before-body.html
+```
+
+- Re-render locally **or** publish to Netlify/GitHub Pages
+
+::: {.notes}
+Source content:
+8c) Render: Re-render the Quarto site locally or publish to Netlify/GitHub Pages.
+
+Coaching:
+- If they deploy: remind them GTM publish and website publish are separate actions.
+:::
+
+---
+
+## Step 3 — GA4 Configuration Tag (in GTM)
+
+- Create a **Google Tag** (formerly Config Tag)
+- Measurement ID: <span class="text-cpp-gold">G-XXXXXXXX</span>
+- Trigger: **All Pages**
+
+```text
+GTM Tag Configuration
+---------------------
+Tag Type: Google Tag
+Measurement ID: G-XXXXXXXX
+Trigger: All Pages
+```
+
+::: {.notes}
+Source content:
+9) Step 3: The GA4 Configuration Tag:
+a. In GTM, create a "Google Tag" (formerly Config Tag).
+b. Paste the GA4 Measurement ID (G-XXXXXXXX). ((Find this in GA4 Admin > Data Collection > Data Streams > Click the Arrow))
+c. Trigger: All Pages.
+
+Emphasize:
+- This is baseline tracking. We’re verifying page_view first before adding custom events.
+:::
+
+---
+
+## Step 4 — Publishing (do this now)
+
+- In <span class="text-cpp-green">GTM</span>, click <span class="highlight">SUBMIT</span>
+- Then click <span class="highlight">PUBLISH</span>
+
+::: {.notes}
+Source content:
+10) Step 4: Publishing:
+a. Critical Step: Students must hit SUBMIT and PUBLISH in GTM now.
+
+Common failure mode:
+- Students create tags but never publish, then wonder why GA4 is empty.
+:::
+
+---
+
+## Step 5 — Validation
+
+:::: {.columns}
+::: {.column width="55%"}
+- Open **GA4 DebugView**
+- Open the site in a new tab
+- Look for <span class="badge badge-green">page_view</span> appearing in the timeline
+:::
+::: {.column width="45%"}
+<div class="placeholder-box placeholder-tall">Visual placeholder: DebugView timeline showing <strong>page_view</strong></div>
+:::
+
+::::
+
+::: {.notes}
+Source content:
+11) Step 5: Validation:
+a. Use GA4 DebugView (Admin > Data Display > DebugView).
+b. Open the site in a new tab. Look for the "page_view" event appearing in the timeline
+c. Expected Outcome: We will see events firing off in GA4.
+
+Also mention:
+- GTM Preview/Debug: use it when you need to confirm “did the tag fire?”
+- DebugView confirms “did GA4 receive it?”
+:::
+
+---
+
+## Search Visibility with <span class="text-teal">GSC</span>
+
+- Configure Google Search Console on the website
+- Connect <span class="text-teal">GSC</span> to <span class="text-cpp-gold">GA4</span>
+- In GA4: Reports → Library → **Publish** “Search Console”
+
+::: {.notes}
+Source content:
+12) Configuration
+a. Configure Google Search Console on website (different methods) and then connect GSC to GA4.
+b. Go to GA4 > Reports > Library. Find the "Search Console" collection and click Publish. (Without this, the reports remain invisible).
+c. Discussion: Why configure GSC and link to GA4?
+
+Facilitation:
+- Ask: “What questions can GA4 not answer about search without GSC?”
+  Examples: query terms, impressions, average position.
+:::
+
+---
+
+## GSC configuration methods
+
+:::: {.columns}
+::: {.column width="48%"}
+### Domain Property
+- Verify via **DNS settings** at domain provider
+:::
+
+::: {.column width="52%"}
+### URL Prefix Property
+- HTML file upload (developer access)
+- HTML tag (WordPress/CMS users)
+- GA4/GTM (best if GA4 or GTM already exists)
+:::
+
+::::
+
+::: {.notes}
+Source content:
+13) GSC Configuration Methods:
+a. Domain Property: DNS settings in domain provider.
+b. URL Prefix Property:
+  i. HTML file upload – developer access.
+  ii. Html tag – wordpress/CMS users (easiest).
+  iii. GA4/GTM – best for sites that already have GA4 or GTM.
+
+Teaching point:
+- The “best” method is the one students can actually execute with their access level.
+:::
+
+---
+
+## Campaign Tracking with <span class="text-citrus">UTMs</span>
+
+- UTMs add **campaign intent** to traffic attribution
+- Standardization prevents reporting from fragmenting
+
+<div class="placeholder-box">Visual placeholder: Google Campaign URL Builder screenshot</div>
+
+::: {.notes}
+Source content:
+14) Strategic Rationale:
+a. Why do we need them? “Without UTMs, GA4 can usually tell you where a user came from (e.g., 'They came from Facebook'). But it cannot tell you how they got there or why (e.g., 'Did they click the expensive ad we paid for, or just a free post on our wall?')”
+
+Use the quote verbally; keep the slide short.
+:::
+
+---
+
+## Standardization protocols
+
+- Be consistent across teams and channels
+- <span class="text-citrus">UTM</span> is case sensitive  
+  `Facebook != facebook`
+- Decide naming rules **before** campaigns launch
+
+::: {.notes}
+Source content:
+15) Standardization Protocols:
+a. Need to be standardized or else data becomes fragmented.
+b. Utm is case sensitive, Facebook!=facebook.
+
+Facilitation:
+- Give students a simple convention: lowercase, underscores, no spaces.
+:::
+
+---
+
+## Interactive exercise: build a UTM
+
+Scenario: “Create a link for a LinkedIn post promoting the Spring Workshop.”
+
+```text
+utm_source=linkedin
+utm_medium=social
+utm_campaign=spring_workshop_2026
+```
+
+::: {.notes}
+Source content:
+16) Interactive Exercise:
+a. Use the Google Campaign URL Builder.
+b. Scenario: "Create a link for a LinkedIn post promoting the Spring Workshop."
+c. Table:
+i. utm_source: linkedin
+ii. utm_medium: social
+iii. utm_campaign: spring_workshop_2026
+d. Standard Parameters Table (Cover at URL Builder)
+
+Coaching:
+- Ask students to paste their full generated URL in chat for quick scanning.
+:::
+
+---
+
+## Key Events: measuring outcomes
+
+- <span class="text-cpp-gold">GA4 Event</span>: something happened (page visit, scrolling)
+- <span class="text-rose">GA4 Key Event</span>: something important happened (purchase, signup, etc.)
+- “Conversion” = a Key Event you share with Google Ads for bidding
+
+::: {.notes}
+Source content:
+17) Terminology Shift (2025 Update):
+a. GA4 Event: something happened (page visit, scrolling).
+b. GA4 Key Events (formerly called “Conversions”).
+  i. Key event: something important happened (purchase, form signup, view resume, etc).
+c. Conversion: a Key Event that we explicitly shared with Google Ads for bidding.
+
+Teaching move:
+- Make sure students don’t overuse Key Events; keep them aligned to business outcomes.
+:::
+
+---
+
+## Key Event implementation (via GTM)
+
+### Step 1: Create the Trigger (GTM)
+
+```text
+Trigger: Thank You Page
+Type: Page View
+Fire On: Some Page Views
+Condition: Page Path contains "thank-you" (or "contact")
+```
+
+::: {.notes}
+Source content:
+18) Implementation Strategy (via GTM):
+a. Step 1: Create the Trigger in GTM
+  i. Type: Page View.
+  ii. Fire On: Some Page Views → Page Path contains "thank-you" (or "contact").
+
+Coaching:
+- If their site uses a different path, have them identify it in the browser URL bar first.
+:::
+
+---
+
+## Key Event implementation (via GTM)
+
+### Step 2: Create the Tag (GTM)
+
+```text
+Tag: Google Analytics: GA4 Event
+Measurement ID: (use the variable from the Google Tag)
+Event Name: generate_lead
+Trigger: Thank You Page
+```
+
+::: {.notes}
+Source content:
+18b) Step 2: Create the Tag in GTM
+i. Create a new Tag: Google Analytics: GA4 Event.
+ii. Measurement ID: Use the variable created in Section III (or paste ID).
+iii. Event Name: generate_lead (Standardized naming is crucial).
+iv. Trigger: Select the "Thank You Page" trigger created in Step 1.
+
+Teaching point:
+- Naming consistency is what makes analysis scalable across sites and time.
+:::
+
+---
+
+## Publish & test
+
+- Publish the <span class="text-cpp-green">GTM</span> container
+- Visit the Thank You page
+- Confirm in <span class="text-cpp-gold">GA4</span> DebugView that <span class="badge badge-citrus">generate_lead</span> fired
+
+::: {.notes}
+Source content:
+18c) Step 3: Publish & Test:
+i. Publish the GTM container.
+ii. Visit the "Thank You" page on the site.
+iii. Check GA4 DebugView to see the generate_lead event fire.
+
+Quick troubleshooting:
+- If tag fires in GTM Preview but not in GA4 DebugView, check Measurement ID and whether the Google Tag is published.
+:::
+
+---
+
+## The handshake in GA4
+
+- GA4 Admin → Data Display → **Events**
+- It may take **24 hours** for new events to appear automatically
+- Immediate fix: **Create Key Event** manually  
+  Name: `generate_lead` (exact match)
+
+::: {.notes}
+Source content:
+18d) Step 4: The Handshake (In GA4):
+i. Go to GA4 Admin > Data Display > Events.
+ii. Note: It may take 24 hours for the new event to appear in the list automatically.
+iii. Immediate Fix: Click "Create Key Event" manually.
+iv. Name: Enter generate_lead exactly as typed in GTM.
+v. Save: Now, every time GTM fires this tag, GA4 will count it as a Key Event.
+
+Instructional design:
+- Ask students: “Where could this break?” and list: trigger rule, tag config, publish, DebugView verification, key event creation.
+:::
+
+---
+
+## Wrap-up
+
+- You now have:
+  - Baseline <span class="text-cpp-green">GTM</span> → <span class="text-cpp-gold">GA4</span> tracking
+  - A validation workflow (Preview/Debug + DebugView)
+  - <span class="text-teal">GSC</span> linkage path for search reporting
+  - Standardized <span class="text-citrus">UTMs</span> and a <span class="text-rose">Key Event</span> pattern
+
+::: {.notes}
+- Close by revisiting Learning Outcomes and checking them off.
+- Point them to next steps: add additional events (scroll depth, outbound clicks), build an exploration in GA4, and document naming conventions.
+:::
+</file>
+
+<file path="theme.scss">
+/*----------------------------------------
+  1. DEFAULTS
+  (Quarto requires at least one boundary)
+----------------------------------------*/
+/*-- scss:defaults --*/
+
+// Cal Poly Pomona Branding
+$cpp-green: #005030;
+$cpp-gold:  #FFB81C;
+
+// Secondary Colors
+$avocado:   #A4D65E;
+$citrus:    #FF7500;
+$white:     #FFFFFF;
+$teal:      #00838A;
+$bay-brown: #CFBAB0;
+$black:     #121212;
+$rose:      #b52b4c;
+$eggshell:  #E2E8E0;
+
+
+// Typography
+$font-primary: Arial, sans-serif;
+$font-secondary: Georgia, serif;
+$font-body: Arial, sans-serif;
+
+
+
+/*----------------------------------------
+  2. RULES
+----------------------------------------*/
+/*-- scss:rules --*/
+
+/* Reveal-specific styles */
+.reveal {
+  /* Base font and color for reveal slides */
+  font-family: $font-body;
+  color: $black;
+
+  
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-primary;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 2.0em;
+    color: $cpp-green !important;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    color: $cpp-gold !important;
+  }
+
+  h3 {
+    font-size: 1.5em;
+    color: $teal !important;
+  }
+  
+  h4 {
+    font-size: 1.25em;
+    color: $rose !important;
+  }
+
+  p {
+    font-size: 0.9em;
+    line-height: 1.1;
+    color: $black !important;
+  }
+
+
+
+  /* Links */
+  a {
+    color: $citrus !important;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* Slide background */
+  .slide-background {
+    background-color: $eggshell !important;
+  }
+
+  /* Controls */
+  .controls {
+    color: $cpp-green !important;
+  }
+
+  /* Progress bar */
+  .progress {
+    background-color: $cpp-green !important;
+    height: 5px;
+
+    span {
+      background-color: $cpp-gold !important;
+    }
+  }
+
+  /* Code blocks specifically in .reveal slides */
+  pre code {
+    background-color: $cpp-green;
+    color: $white;
+    font-size: 1em;
+    padding: 1em;
+    border-radius: 5px;
+    border: 2px solid $avocado;
+  }
+
+/* Bulleted and numbered lists in slides */
+  .slides section { 
+  
+    /* First-level unordered list */
+    ul {
+    list-style-type: disc;
+    font-size: 2.0rem;
+    margin-left: 1.5em;
+    color: $black;  // Color for first-level bullets and text
+
+    // Second-level bullets
+    ul {
+      list-style-type: square;
+      font-size: 1.75rem;
+      margin-left: 1.6em;
+      color: $black;  // Color for second-level bullets and text
+
+      // Third-level bullets
+      ul {
+        list-style-type: circle;
+        font-size: 1.5rem;
+        margin-left: 1.7em;
+        color: $black;  // Color for third-level bullets and text
+      }
+    }
+  }
+  
+  /* First-level ordered list */
+  ol {
+    list-style-type: decimal;
+    font-size: 2.0rem;
+    margin-left: 1.5em;
+    color: $black;  // Color for first-level numbers and text
+
+    /* Second-level ordered list */
+    ol {
+      list-style-type: lower-alpha;  // a, b, c...
+      font-size: 1.75rem;
+      margin-left: 1.6em;
+      color: $black;  // Color for second-level numbers and text
+
+      /* Third-level ordered list */
+      ol {
+        list-style-type: lower-roman;  // i, ii, iii...
+        font-size: 1.5rem;
+        margin-left: 1.7em;
+        color: $black;  // Color for third-level numbers and text
+      }
+    }
+  }
+
+  /* Mixed lists (ul inside ol and vice versa) */
+  ol ul, ul ol {
+    font-size: 2rem;  
+    margin-left: 1.6em;  
+    color: $black;  
+
+    /* Second-level mixed lists */
+    ul, ol {
+      font-size: 1.75rem;
+      margin-left: 1.7em;
+      color: $black;
+    }
+  }
+}
+
+  /* Highlight class */
+  .highlight {
+    background-color: $citrus;
+    color: $white;
+    padding: 0.2em 0.4em;
+    border-radius: 0.2em;
+  }
+
+  /* Logo class */
+  .slide-logo {
+    bottom: 10px !important;
+    right: 10px !important;
+    width: 150px !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* Font Size Utility Classes */
+  .small {
+    font-size: 0.5em;
+  }
+
+  .medium-small {
+    font-size: 0.75em;
+  }
+
+  .table-font {
+    font-size: 0.9em;
+  }
+  
+  .large-small {
+    font-size: 1em;
+  }
+
+  .small-medium {
+    font-size: 1.125em;
+  }
+
+  .medium {
+    font-size: 1.25em;
+  }
+
+  .large-medium {
+    font-size: 1.375em;
+  }
+
+  .small-large {
+    font-size: 1.5em;
+  }
+
+  .medium-large {
+    font-size: 1.625em;
+  }
+
+  .large {
+    font-size: 1.75em;
+  }
+}
+
+/* Keyframes (can be placed anywhere outside a nested block) */
+@keyframes progressColor {
+  0%   { background-color: $cpp-green; }
+  100% { background-color: $cpp-gold; }
+}
+
+/* Utility Classes */
+.text-cpp-green { color: $cpp-green; }
+.text-cpp-gold  { color: $cpp-gold; }
+.text-avocado   { color: $avocado; }
+.text-citrus    { color: #FF7500; }
+.text-teal      { color: $teal; }
+.text-rose      { color: $rose; }
+.text-black     { color: $black; }
+
+.badge { 
+  padding: 0.08em 0.35em; 
+  border-radius: 0.25em; 
+  color: $white; 
+}
+.badge-green { background-color: $cpp-green; }
+.badge-citrus { background-color: $citrus; }
+</file>
+
+</files>
