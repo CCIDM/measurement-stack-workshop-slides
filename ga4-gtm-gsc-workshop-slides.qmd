@@ -239,7 +239,7 @@ Before we touch the code/website, we need the containers.
 ### Why GTM?
 * **The Box Metaphor:** GTM is the empty box; GA4 is just one tool you put inside it.
 * **Efficiency:** You install the GTM code **once**. Future changes (Facebook Pixel, LinkedIn Insight, GA4 Events) happen inside GTM, not your site code.
-:::
+
 
 ::::
 
@@ -317,247 +317,163 @@ Before we touch the code/website, we need the containers.
 If you see events populating the timeline in real-time, your connection is successful. If the timeline is empty, check if your ad blocker is on!
 :::
 
-
-
-
-
-
 ---
 
-## Search Visibility with <span class="text-teal">GSC</span>
 
-- Configure Google Search Console on the website
-- Connect <span class="text-teal">GSC</span> to <span class="text-cpp-gold">GA4</span>
-- In GA4: Reports → Library → **Publish** “Search Console”
+## Search Visibility: Google Search Console (15 Min)
 
-::: {.notes}
-Source content:
-12) Configuration
-a. Configure Google Search Console on website (different methods) and then connect GSC to GA4.
-b. Go to GA4 > Reports > Library. Find the "Search Console" collection and click Publish. (Without this, the reports remain invisible).
-c. Discussion: Why configure GSC and link to GA4?
+### **Goal**
+1.  **Verify** ownership of your website with Google.
+2.  **Connect** GSC data to your GA4 dashboard.
 
-Facilitation:
-- Ask: “What questions can GA4 not answer about search without GSC?”
-  Examples: query terms, impressions, average position.
+::: {.callout-note}
+## Why do this?
+* **GA4** tells you *what* users do on your site (clicks, scrolls).
+* **GSC** tells you *how* users found you (keywords, rankings).
+* **Together:** You see the full picture of your SEO performance.
 :::
 
 ---
 
-## GSC configuration methods
+## Step 1: Add Property (Choose Type)
+
+When you click "Add Property" in GSC, you have two choices:
 
 :::: {.columns}
-::: {.column width="48%"}
-### Domain Property
-- Verify via **DNS settings** at domain provider
+
+::: {.column width="50%"}
+### 1. Domain Property (Recommended)
+* **Covers:** `example.com`, `m.example.com`, `www.example.com`, `http://`, `https://`.
+* **Requires:** DNS Verification (Harder).
+* **Best For:** Long-term business tracking.
 :::
 
-::: {.column width="52%"}
-### URL Prefix Property
-- HTML file upload (developer access)
-- HTML tag (WordPress/CMS users)
-- GA4/GTM (best if GA4 or GTM already exists)
+::: {.column width="50%"}
+### 2. URL Prefix
+* **Covers:** ONLY the exact URL entered (e.g., `https://www.example.com`).
+* **Requires:** File upload, HTML tag, or GA4 (Easier).
+* **Best For:** Quick setup or if you lack DNS access.
 :::
 
 ::::
 
-::: {.notes}
-Source content:
-13) GSC Configuration Methods:
-a. Domain Property: DNS settings in domain provider.
-b. URL Prefix Property:
-  i. HTML file upload – developer access.
-  ii. Html tag – wordpress/CMS users (easiest).
-  iii. GA4/GTM – best for sites that already have GA4 or GTM.
+---
 
-Teaching point:
-- The “best” method is the one students can actually execute with their access level.
+## Step 2: Verify Ownership
+
+Google needs proof you own the site. Choose the method that fits your access level:
+
+| Method | Difficulty | Best Use Case |
+| :--- | :--- | :--- |
+| **DNS Record** | High | **Domain Property.** Best for full coverage. Requires logging into GoDaddy/Namecheap. |
+| **HTML File** | Medium | **URL Prefix.** You have FTP/File access to the server root. |
+| **HTML Tag** | Low | **URL Prefix.** WordPress/Wix users. Copy/paste a meta tag into your header. |
+| **GA4 / GTM** | **Lowest** | **URL Prefix.** If you *already* installed GA4/GTM (and have "Edit" permission), this verifies instantly! |
+
+::: {.callout-tip}
+## Pro Tip
+If you just set up GA4/GTM in the previous step, try the **Google Analytics** verification method first. It's one click!
+:::
+
+
+---
+
+## Step 3: Link GSC to GA4
+
+Data doesn't appear automatically. You must **Link** and **Publish**.
+
+1.  **Link:**
+    * Go to **GA4 Admin** > **Product Links** > **Search Console Links**.
+    * Click **Link**, select your GSC property, and confirm.
+2.  **Publish Reports:**
+    * Go to **Reports** > **Library** (bottom left folder icon).
+    * Find the **"Search Console"** collection card.
+    * Click the **3 dots** > **Publish**.
+
+> **Result:** A new "Search Console" tab will appear in your main reporting menu, showing Queries and Landing Pages.
+
+---
+
+## Campaign Tracking: UTM Parameters (15 Min)
+
+### **The Blind Spot**
+Without UTMs, GA4 can usually tell you **where** a user came from (e.g., "They came from Facebook").
+
+**But it cannot tell you:**
+* **How** they got there (Paid Ad vs. Free Post?)
+* **Why** they came (Spring Sale vs. Black Friday?)
+
+::: {.callout-note}
+## The Solution
+UTM parameters are "tags" we add to the end of a link. They force GA4 to record exactly what we tell it to record.
 :::
 
 ---
 
-## Campaign Tracking with <span class="text-citrus">UTMs</span>
+## Standardization Protocols
 
-- UTMs add **campaign intent** to traffic attribution
-- Standardization prevents reporting from fragmenting
+Data is only useful if it is consistent.
 
-<div class="placeholder-box">Visual placeholder: Google Campaign URL Builder screenshot</div>
+### **Rule 1: Case Sensitivity**
+GA4 treats `Email`, `email`, and `EMAIL` as three completely different traffic sources.
+* **Best Practice:** Always use **lowercase** for everything.
 
-::: {.notes}
-Source content:
-14) Strategic Rationale:
-a. Why do we need them? “Without UTMs, GA4 can usually tell you where a user came from (e.g., 'They came from Facebook'). But it cannot tell you how they got there or why (e.g., 'Did they click the expensive ad we paid for, or just a free post on our wall?')”
-
-Use the quote verbally; keep the slide short.
-:::
+### **Rule 2: Fragmentation**
+If five people on your team name campaigns differently, your reports will be unreadable.
+* *Bad:* `spring-sale`, `Spring_Sale`, `springsale26`
+* *Good:* `spring_sale_2026` (Standardized)
 
 ---
 
-## Standardization protocols
+## Interactive Exercise
 
-- Be consistent across teams and channels
-- <span class="text-citrus">UTM</span> is case sensitive  
-  `Facebook != facebook`
-- Decide naming rules **before** campaigns launch
+**Goal:** Create a tracking link for a **LinkedIn post** promoting the **Spring Workshop**.
 
-::: {.notes}
-Source content:
-15) Standardization Protocols:
-a. Need to be standardized or else data becomes fragmented.
-b. Utm is case sensitive, Facebook!=facebook.
+1.  **Open Tool:** [Google Campaign URL Builder](https://ga-dev-tools.google/campaign-url-builder/)
+2.  **Enter Values:**
 
-Facilitation:
-- Give students a simple convention: lowercase, underscores, no spaces.
-:::
+| Parameter | Value | Logic |
+| :--- | :--- | :--- |
+| **Website URL** | `https://yoursite.com` | Where they go. |
+| **Campaign Source** | `linkedin` | The specific site. |
+| **Campaign Medium** | `social` | The marketing channel. |
+| **Campaign Name** | `spring_workshop_2026` | The strategic effort. |
 
----
-
-## Interactive exercise: build a UTM
-
-Scenario: “Create a link for a LinkedIn post promoting the Spring Workshop.”
-
-```text
-utm_source=linkedin
-utm_medium=social
-utm_campaign=spring_workshop_2026
-```
-
-::: {.notes}
-Source content:
-16) Interactive Exercise:
-a. Use the Google Campaign URL Builder.
-b. Scenario: "Create a link for a LinkedIn post promoting the Spring Workshop."
-c. Table:
-i. utm_source: linkedin
-ii. utm_medium: social
-iii. utm_campaign: spring_workshop_2026
-d. Standard Parameters Table (Cover at URL Builder)
-
-Coaching:
-- Ask students to paste their full generated URL in chat for quick scanning.
-:::
+3.  **Result:** Copy the generated URL and test it.
 
 ---
 
-## Key Events: measuring outcomes
+## Standard UTM Parameters
 
-- <span class="text-cpp-gold">GA4 Event</span>: something happened (page visit, scrolling)
-- <span class="text-rose">GA4 Key Event</span>: something important happened (purchase, signup, etc.)
-- “Conversion” = a Key Event you share with Google Ads for bidding
-
-::: {.notes}
-Source content:
-17) Terminology Shift (2025 Update):
-a. GA4 Event: something happened (page visit, scrolling).
-b. GA4 Key Events (formerly called “Conversions”).
-  i. Key event: something important happened (purchase, form signup, view resume, etc).
-c. Conversion: a Key Event that we explicitly shared with Google Ads for bidding.
-
-Teaching move:
-- Make sure students don’t overuse Key Events; keep them aligned to business outcomes.
-:::
-
----
-
-## Key Event implementation (via GTM)
-
-### Step 1: Create the Trigger (GTM)
-
-```text
-Trigger: Thank You Page
-Type: Page View
-Fire On: Some Page Views
-Condition: Page Path contains "thank-you" (or "contact")
-```
+| Parameter | Definition | Example |
+| :--- | :--- | :--- |
+| `utm_source` | **The "Who"** (The referrer) | `google`, `newsletter`, `facebook` |
+| `utm_medium` | **The "How"** (Marketing channel) | `cpc` (paid), `email`, `social` |
+| `utm_campaign` | **The "Why"** (Product/Promotion) | `spring_sale`, `webinar_launch` |
+| `utm_content` | **The "What"** (Specific ad/link) | `sidebar_link`, `video_ad`, `text_link` |
+| `utm_term` | **The Keywords** (Paid Search) | `running+shoes`, `marketing+course` |
 
 ::: {.notes}
-Source content:
-18) Implementation Strategy (via GTM):
-a. Step 1: Create the Trigger in GTM
-  i. Type: Page View.
-  ii. Fire On: Some Page Views → Page Path contains "thank-you" (or "contact").
-
-Coaching:
-- If their site uses a different path, have them identify it in the browser URL bar first.
+- **Source:** The specific place the user was before they clicked.
+- **Medium:** The broadest category of traffic.
+- **Campaign:** The specific initiative.
+- **Content:** Used for A/B testing (e.g., Red Button vs. Blue Button).
 :::
 
----
 
-## Key Event implementation (via GTM)
 
-### Step 2: Create the Tag (GTM)
 
-```text
-Tag: Google Analytics: GA4 Event
-Measurement ID: (use the variable from the Google Tag)
-Event Name: generate_lead
-Trigger: Thank You Page
-```
 
-::: {.notes}
-Source content:
-18b) Step 2: Create the Tag in GTM
-i. Create a new Tag: Google Analytics: GA4 Event.
-ii. Measurement ID: Use the variable created in Section III (or paste ID).
-iii. Event Name: generate_lead (Standardized naming is crucial).
-iv. Trigger: Select the "Thank You Page" trigger created in Step 1.
 
-Teaching point:
-- Naming consistency is what makes analysis scalable across sites and time.
-:::
 
----
 
-## Publish & test
 
-- Publish the <span class="text-cpp-green">GTM</span> container
-- Visit the Thank You page
-- Confirm in <span class="text-cpp-gold">GA4</span> DebugView that <span class="badge badge-citrus">generate_lead</span> fired
 
-::: {.notes}
-Source content:
-18c) Step 3: Publish & Test:
-i. Publish the GTM container.
-ii. Visit the "Thank You" page on the site.
-iii. Check GA4 DebugView to see the generate_lead event fire.
 
-Quick troubleshooting:
-- If tag fires in GTM Preview but not in GA4 DebugView, check Measurement ID and whether the Google Tag is published.
-:::
 
----
 
-## The handshake in GA4
 
-- GA4 Admin → Data Display → **Events**
-- It may take **24 hours** for new events to appear automatically
-- Immediate fix: **Create Key Event** manually  
-  Name: `generate_lead` (exact match)
 
-::: {.notes}
-Source content:
-18d) Step 4: The Handshake (In GA4):
-i. Go to GA4 Admin > Data Display > Events.
-ii. Note: It may take 24 hours for the new event to appear in the list automatically.
-iii. Immediate Fix: Click "Create Key Event" manually.
-iv. Name: Enter generate_lead exactly as typed in GTM.
-v. Save: Now, every time GTM fires this tag, GA4 will count it as a Key Event.
 
-Instructional design:
-- Ask students: “Where could this break?” and list: trigger rule, tag config, publish, DebugView verification, key event creation.
-:::
 
----
 
-## Wrap-up
-
-- You now have:
-  - Baseline <span class="text-cpp-green">GTM</span> → <span class="text-cpp-gold">GA4</span> tracking
-  - A validation workflow (Preview/Debug + DebugView)
-  - <span class="text-teal">GSC</span> linkage path for search reporting
-  - Standardized <span class="text-citrus">UTMs</span> and a <span class="text-rose">Key Event</span> pattern
-
-::: {.notes}
-- Close by revisiting Learning Outcomes and checking them off.
-- Point them to next steps: add additional events (scroll depth, outbound clicks), build an exploration in GA4, and document naming conventions.
-:::
