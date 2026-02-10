@@ -460,9 +460,74 @@ If five people on your team name campaigns differently, your reports will be unr
 - **Content:** Used for A/B testing (e.g., Red Button vs. Blue Button).
 :::
 
+---
 
 
+## Performance Measurement: Key Events (10 Min)
 
+### **The 2025 Terminology Shift**
+Google has renamed metrics to align better with Google Ads.
+
+| Old Term | **New Term** | Definition |
+| :--- | :--- | :--- |
+| Event | **Event** | Something happened (Page view, scroll). |
+| Conversion | **Key Event** | Something *important* happened (Purchase, Signup). |
+| *N/A* | **Conversion** | A Key Event shared with Google Ads for bidding. |
+
+::: {.callout-important}
+## The Rule
+In GA4, you measure **Key Events**.
+In Google Ads, you bid on **Conversions**.
+:::
+
+---
+
+## Step 1: Create the Trigger (The "When")
+
+In Google Tag Manager:
+
+1.  **Go to Triggers** > **New**.
+2.  **Trigger Type:** Select **Page View**.
+3.  **Fire On:** Select **Some Page Views**.
+4.  **Condition:**
+    * `Page Path` contains `/thank-you`
+    * *(Or `/confirmed`, `/success` - whatever your URL is).*
+
+> **Logic:** We only want this to fire when a user actually lands on the confirmation page.
+
+---
+
+## Step 2: Create the Tag (The "What")
+
+In Google Tag Manager:
+
+1.  **Go to Tags** > **New**.
+2.  **Tag Type:** **Google Analytics: GA4 Event**.
+3.  **Configuration:**
+    * **Measurement ID:** Paste your `G-XXXXXXXX`.
+    * **Event Name:** `generate_lead`
+    * *(Note: Use standard snake_case names).*
+4.  **Triggering:** Select the **"Thank You Page"** trigger you just made.
+
+::: {.callout-tip}
+## Why `generate_lead`?
+Using Google's [Recommended Event Names](https://developers.google.com/analytics/devguides/collection/ga4/reference/events) unlocks automatic reporting features in the dashboard.
+:::
+
+---
+
+## Step 4: The Handshake (GA4)
+
+Even if GTM sends the event, GA4 treats it as "just another event" until you tell it otherwise.
+
+**The "Immediate Fix" Method:**
+1.  **Go to:** Admin > Data Display > **Key Events**.
+2.  **Click:** **New Key Event**.
+3.  **Name:** Enter `generate_lead` exactly as you typed it in GTM.
+4.  **Save.**
+
+> **Why do this manually?**
+> Automatic detection can take 24 hours. Creating it manually ensures it is tracked as a Key Event **immediately** from the moment you publish.
 
 
 
