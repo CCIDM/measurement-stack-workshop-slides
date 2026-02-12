@@ -25,10 +25,8 @@ format:
     maxScale: 2.0
     scrollable: true
     incremental: true
-    html:
-      unsafe: true
-execute: 
-  freeze: auto
+    navigation-mode: linear
+
 ---
 
 
@@ -38,13 +36,13 @@ execute:
 -   Jarrod Griffin, Master's Student - Digital Marketing, Graduate Fellow, CCIDM
 
 ::: {.callout-tip}
-## Live slides available at <https://ccidm.github.io/cba-symposium-quarto>
+## Live slides available at <https://ccidm.github.io/measurement-stack-workshop-slides/ga4-gtm-gsc-workshop-slides.html>
 :::
 
 ## Introduction & Orientation
 
 - **The Objective:** Moving from marketing theory to Marketing Operations.
-- **The Career Impact:** Why this technical skillset matters for your future role.
+- **The Career Impact:** Employers need people who can prove their strategies work. By the end of this, you will have the technical skills to gather the data that validates your marketing decisions.
 - **The Goal:** Gaining the ability to not just plan campaigns, but measure and optimize them.
 
 ::: {.notes}
@@ -87,19 +85,16 @@ After taking this workshop, participants should be able to:
 
 ::::
 
+---
 
 ## Workshop Prep
 
-- Create Google Account
-- Download/Setup <span class="text-citrus">RStudio</span>
-- Download/Setup <span class="text-teal">Git</span>
-- Access/Publish Starter Quarto Portfolio Website Repo <https://github.com/CCIDM/portfolio-website-template>
+- **Required: ** Create Google Account
+- Website with admin-level access (if not, see below)
 
-::: {.callout-note}
-Optional to Follow Along; Required to Deploy
+::: {.fragment}
+### No-Install Method (Posit Cloud) 
 :::
-
-### No-Install Method (Posit Cloud)
 
 1.  **Create Account:** Log in to [posit.cloud](https://posit.cloud) (Free Tier).
 2.  **Import Template:**
@@ -201,9 +196,16 @@ To follow along, you need:
 1.  **A Published Website:** Your site is live (e.g., Netlify, GitHub Pages).
 2.  **Admin Access:** You have the ability to edit the source code or CMS settings.
 
+::: {.fragment}
+
 ::: {.callout-note}
+
 ## Why this matters
+
 We are moving from "static pages" to "measurable data" by injecting tracking codes into your live environment.
+
+:::
+
 :::
 
 ---
