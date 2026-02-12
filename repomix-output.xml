@@ -408,12 +408,14 @@ format:
 
 ## Greetings and Introductions
 
--   Jae Jung, Ph.D., Professor of Marketing, Director of CCIDM
--   Jarrod Griffin, Master's Student - Digital Marketing, Graduate Fellow, CCIDM
-
 ::: {.callout-tip}
 ## Live slides available at <https://ccidm.github.io/measurement-stack-workshop-slides/ga4-gtm-gsc-workshop-slides.html>
 :::
+
+-   Jae Jung, Ph.D., Professor of Marketing, Director of CCIDM
+-   Jarrod Griffin, Master's Student - M.S. Digital Marketing, Graduate Fellow, CCIDM
+
+
 
 ## Introduction & Orientation
 
@@ -469,7 +471,7 @@ After taking this workshop, participants should be able to:
 - Website with admin-level access (if not, see below)
 
 ::: {.fragment}
-### No-Install Method (Posit Cloud) 
+### No-Install Method (Posit Cloud) - Become a website developer in 3 minutes
 :::
 
 1.  **Create Account:** Log in to [posit.cloud](https://posit.cloud) (Free Tier).
@@ -618,6 +620,7 @@ Before we touch the code/website, we need the containers.
 * **The Box Metaphor:** GTM is the empty box; GA4 is just one tool you put inside it.
 * **Efficiency:** You install the GTM code **once**. Future changes (Facebook Pixel, LinkedIn Insight, GA4 Events) happen inside GTM, not your site code.
 
+:::
 
 ::::
 
@@ -641,10 +644,11 @@ Before we touch the code/website, we need the containers.
 * **One Property Rule:** Most businesses only need **1 Property**.
 * **Cross-Device:** Combine your Website and App data in the *same* property for better user tracking.
 * **When to split?** Only use multiple properties for different **Regions** (Timezones/Currencies) or **Marketing Teams**.
+
 :::
 
 ::::
-:::
+
 
 
 
@@ -700,6 +704,8 @@ If you see events populating the timeline in real-time, your connection is succe
 
 ## Search Visibility: Google Search Console (15 Min)
 
+<https://search.google.com/search-console/>
+
 ### **Goal**
 1.  **Verify** ownership of your website with Google.
 2.  **Connect** GSC data to your GA4 dashboard.
@@ -709,6 +715,7 @@ If you see events populating the timeline in real-time, your connection is succe
 * **GA4** tells you *what* users do on your site (clicks, scrolls).
 * **GSC** tells you *how* users found you (keywords, rankings).
 * **Together:** You see the full picture of your SEO performance.
+
 :::
 
 ---
@@ -724,6 +731,7 @@ When you click "Add Property" in GSC, you have two choices:
 * **Covers:** `example.com`, `m.example.com`, `www.example.com`, `http://`, `https://`.
 * **Requires:** DNS Verification (Harder).
 * **Best For:** Long-term business tracking.
+
 :::
 
 ::: {.column width="50%"}
@@ -731,6 +739,7 @@ When you click "Add Property" in GSC, you have two choices:
 * **Covers:** ONLY the exact URL entered (e.g., `https://www.example.com`).
 * **Requires:** File upload, HTML tag, or GA4 (Easier).
 * **Best For:** Quick setup or if you lack DNS access.
+
 :::
 
 ::::
@@ -778,6 +787,7 @@ Data doesn't appear automatically. You must **Link** and **Publish**.
 Without UTMs, GA4 can usually tell you **where** a user came from (e.g., "They came from Facebook").
 
 **But it cannot tell you:**
+
 * **How** they got there (Paid Ad vs. Free Post?)
 * **Why** they came (Spring Sale vs. Black Friday?)
 
@@ -794,10 +804,12 @@ Data is only useful if it is consistent.
 
 ### **Rule 1: Case Sensitivity**
 GA4 treats `Email`, `email`, and `EMAIL` as three completely different traffic sources.
+
 * **Best Practice:** Always use **lowercase** for everything.
 
 ### **Rule 2: Fragmentation**
 If five people on your team name campaigns differently, your reports will be unreadable.
+
 * *Bad:* `spring-sale`, `Spring_Sale`, `springsale26`
 * *Good:* `spring_sale_2026` (Standardized)
 
@@ -899,6 +911,7 @@ Using Google's [Recommended Event Names](https://developers.google.com/analytics
 Even if GTM sends the event, GA4 treats it as "just another event" until you tell it otherwise.
 
 **The "Immediate Fix" Method:**
+
 1.  **Go to:** Admin > Data Display > **Key Events**.
 2.  **Click:** **New Key Event**.
 3.  **Name:** Enter `generate_lead` exactly as you typed it in GTM.
@@ -906,6 +919,11 @@ Even if GTM sends the event, GA4 treats it as "just another event" until you tel
 
 > **Why do this manually?**
 > Automatic detection can take 24 hours. Creating it manually ensures it is tracked as a Key Event **immediately** from the moment you publish.
+
+
+
+
+## Thank you
 </file>
 
 </files>

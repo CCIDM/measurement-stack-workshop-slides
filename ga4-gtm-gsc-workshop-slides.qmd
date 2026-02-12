@@ -32,12 +32,14 @@ format:
 
 ## Greetings and Introductions
 
--   Jae Jung, Ph.D., Professor of Marketing, Director of CCIDM
--   Jarrod Griffin, Master's Student - Digital Marketing, Graduate Fellow, CCIDM
-
 ::: {.callout-tip}
 ## Live slides available at <https://ccidm.github.io/measurement-stack-workshop-slides/ga4-gtm-gsc-workshop-slides.html>
 :::
+
+-   Jae Jung, Ph.D., Professor of Marketing, Director of CCIDM
+-   Jarrod Griffin, Master's Student - M.S. Digital Marketing, Graduate Fellow, CCIDM
+
+
 
 ## Introduction & Orientation
 
@@ -93,7 +95,7 @@ After taking this workshop, participants should be able to:
 - Website with admin-level access (if not, see below)
 
 ::: {.fragment}
-### No-Install Method (Posit Cloud) 
+### No-Install Method (Posit Cloud) - Become a website developer in 3 minutes
 :::
 
 1.  **Create Account:** Log in to [posit.cloud](https://posit.cloud) (Free Tier).
@@ -533,6 +535,7 @@ Using Google's [Recommended Event Names](https://developers.google.com/analytics
 Even if GTM sends the event, GA4 treats it as "just another event" until you tell it otherwise.
 
 **The "Immediate Fix" Method:**
+
 1.  **Go to:** Admin > Data Display > **Key Events**.
 2.  **Click:** **New Key Event**.
 3.  **Name:** Enter `generate_lead` exactly as you typed it in GTM.
