@@ -89,23 +89,59 @@ After taking this workshop, participants should be able to:
 
 ---
 
-## Workshop Prep
+## Who Needs This Workshop?
 
-- **Required: ** Create Google Account
-- Website with admin-level access (if not, see below)
+Digital marketing roles fall into **4 categories**, and each needs this data stack differently.
 
+:::: {.columns}
+
+::: {.column width="50%"}
 ::: {.fragment}
-### No-Install Method (Posit Cloud) - Become a website developer in 3 minutes
+### 1. Content & Creative
+*(Writers, Social, Designers)*
+
+* **Focus:** The "What" (Assets & Copy).
+* **Why:** You need **UTMs** to prove *which* specific creative drove a sale, moving you beyond "vanity metrics" (likes) to business value.
+
 :::
 
-1.  **Create Account:** Log in to [posit.cloud](https://posit.cloud) (Free Tier).
-2.  **Import Template:**
-    * Click **New Project** > **New Project from Git Repository**.
-    * Paste this URL: `https://github.com/CCIDM/portfolio-website-template.git`
-3.  **Edit:** Open `index.qmd` to customize your content.
-4.  **Publish:**
-    * Go to Terminal tab, enter `quarto publish netlify`. You will be prompted to login to netlify. Create account or login.
+::: {.fragment}
+### 2. Technical & Performance
+*(SEO, PPC, Email Specialists)*
 
+* **Focus:** The "How" (Algorithms & Spend).
+* **Why:** You live and die by ROI. You need **GSC** to monitor organic rank health and **GTM** to deploy ad tracking pixels instantly.
+
+:::
+
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+### 3. Data & Analytics
+*(Analysts, Data Scientists)*
+
+* **Focus:** Measurement & Prediction.
+* **Why:** "Garbage In, Garbage Out." You need to understand the "plumbing" (**GTM**) to ensure the data feeding your models (SQL/Python/R) is accurate.
+
+:::
+
+::: {.fragment}
+### 4. Strategy & Leadership
+*(Managers, CMOs)*
+
+* **Focus:** Planning & Budgeting.
+* **Why:** You make high-stakes budget decisions. You must enforce **Standardization** (UTMs) so your team's reports are consistent and trustworthy.
+
+:::
+
+:::
+
+::::
+
+::: aside
+Source: [CPP MSDM Career Outlook - Typical Job Titles](https://www.cppmsdm.com/career_outlook_salary_digital_marketing#typical-job-titles)
+:::
 
 ---
 
@@ -212,7 +248,57 @@ We are moving from "static pages" to "measurable data" by injecting tracking cod
 
 ---
 
-## The Account Setup
+## Website Construction Options
+
+There are two main paths for building the "container" for your data ecosystem.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.fragment}
+### 1. CMS
+*(Content Management Systems)*
+
+* **Pros:** Drag-and-drop, user-friendly.
+* **Examples:**
+    * Wix
+    * WordPress
+    * Squarespace
+    * Weebly
+    * Canva
+
+:::
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+### 2. Quarto Publication System
+*(Technical & Academic)*
+
+* **Pros:** Free hosting, version control (Git), reproducible.
+* **Examples:**
+    * Quarto Pub
+    * GitHub Pages
+    * Netlify
+
+:::
+:::
+
+::::
+
+::: {.fragment}
+::: {.callout-important}
+## For this workshop
+We will use **RSMT’s website** (Rising Stars Muay Thai).
+It is built in **Quarto** and is already connected/setup for us to analyze.
+
+[https://www.risingstarsmuaythai.com](https://www.risingstarsmuaythai.com/?utm_source=ccidm_workshop&utm_medium=presentation_slides&utm_campaign=spring_2026_series)
+:::
+:::
+
+---
+
+## The GTM/GA4 Setup Flow
 
 ::: {.callout-tip}
 ## GA4: <https://analytics.google.com/> <br> GTM: <https://tagmanager.google.com/>
@@ -230,6 +316,14 @@ Before we touch the code/website, we need the containers.
 
 :::: {.columns}
 
+
+::: {.column width="50%"}
+### Why GTM?
+* **The Box Metaphor:** GTM is the empty box; GA4 is just one tool you put inside it.
+* **Efficiency:** You install the GTM code **once**. Future changes (Facebook Pixel, LinkedIn Insight, GA4 Events) happen inside GTM, not your site code.
+
+:::
+
 ::: {.column width="50%"}
 ### The Setup
 1.  **Log in:** [tagmanager.google.com](https://tagmanager.google.com).
@@ -239,12 +333,7 @@ Before we touch the code/website, we need the containers.
 5.  **Install:** Get the `<head>` and `<body>` scripts.
 :::
 
-::: {.column width="50%"}
-### Why GTM?
-* **The Box Metaphor:** GTM is the empty box; GA4 is just one tool you put inside it.
-* **Efficiency:** You install the GTM code **once**. Future changes (Facebook Pixel, LinkedIn Insight, GA4 Events) happen inside GTM, not your site code.
 
-:::
 
 ::::
 
@@ -273,9 +362,50 @@ Before we touch the code/website, we need the containers.
 
 ::::
 
+---
 
+## The "Big 3" Sections of GA4
 
+We will focus on the **Overview** reports to get a high-level health check of the business.
 
+:::: {.columns}
+
+::: {.column width="33%"}
+### 1. Acquisition
+*(Reports > Acquisition > Overview)*
+
+* **The Question:** "Where is traffic coming from?"
+* **Key Card:** **New Users by Channel**.
+* **Look For:**
+    * **Organic Search:** (SEO working?)
+    * **Email/Manual Source:** (Are the newsletters driving sessions?)
+    * **Google Ads:** (Paid campaign performance).
+
+:::
+
+::: {.column width="33%"}
+### 2. Engagement
+*(Reports > Engagement > Overview)*
+
+* **The Question:** "Is the site interesting?"
+* **Key Metric:** **Average Engagement Time**.
+* **Look For:**
+    * **Time:** (e.g., *1m 35s*). If this is low (<10s), users are leaving immediately.
+    * **Top Pages:** Which specific products (e.g., *Apparel*) get the most views?
+
+:::
+
+::: {.column width="33%"}
+### 3. Explore
+*(The Custom Report Builder)*
+
+* **The Question:** "Why did they drop off?"
+* **The limitation:** The Overview reports tell you *what* happened, but not *why*.
+* **The Solution:** We use **Explore** to build custom funnels when the standard dashboards aren't enough.
+
+:::
+
+::::
 ---
 
 ## Connect GA4 to GTM
@@ -417,10 +547,31 @@ Without UTMs, GA4 can usually tell you **where** a user came from (e.g., "They c
 
 ::: {.callout-note}
 ## The Solution
-UTM parameters are "tags" we add to the end of a link. They force GA4 to record exactly what we tell it to record.
+UTM parameters are "tags" we add to the end of a link. They force GA4 to record exactly what we tell it to record. Example in GA4 > Reports > User acquisition > First user source / medium
 :::
 
 ---
+
+## Standard UTM Parameters
+
+| Parameter | Definition | Example |
+| :--- | :--- | :--- |
+| `utm_source` | **The "Who"** (The referrer) | `google`, `newsletter`, `facebook` |
+| `utm_medium` | **The "How"** (Marketing channel) | `cpc` (paid), `email`, `social` |
+| `utm_campaign` | **The "Why"** (Product/Promotion) | `spring_sale`, `webinar_launch` |
+| `utm_content` | **The "What"** (Specific ad/link) | `sidebar_link`, `video_ad`, `text_link` |
+| `utm_term` | **The Keywords** (Paid Search) | `running+shoes`, `marketing+course` |
+
+::: {.notes}
+- **Source:** The specific place the user was before they clicked.
+- **Medium:** The broadest category of traffic.
+- **Campaign:** The specific initiative.
+- **Content:** Used for A/B testing (e.g., Red Button vs. Blue Button).
+:::
+
+---
+
+
 
 ## Standardization Protocols
 
@@ -455,24 +606,7 @@ If five people on your team name campaigns differently, your reports will be unr
 
 3.  **Result:** Copy the generated URL and test it.
 
----
 
-## Standard UTM Parameters
-
-| Parameter | Definition | Example |
-| :--- | :--- | :--- |
-| `utm_source` | **The "Who"** (The referrer) | `google`, `newsletter`, `facebook` |
-| `utm_medium` | **The "How"** (Marketing channel) | `cpc` (paid), `email`, `social` |
-| `utm_campaign` | **The "Why"** (Product/Promotion) | `spring_sale`, `webinar_launch` |
-| `utm_content` | **The "What"** (Specific ad/link) | `sidebar_link`, `video_ad`, `text_link` |
-| `utm_term` | **The Keywords** (Paid Search) | `running+shoes`, `marketing+course` |
-
-::: {.notes}
-- **Source:** The specific place the user was before they clicked.
-- **Medium:** The broadest category of traffic.
-- **Campaign:** The specific initiative.
-- **Content:** Used for A/B testing (e.g., Red Button vs. Blue Button).
-:::
 
 ---
 
@@ -552,7 +686,21 @@ Even if GTM sends the event, GA4 treats it as "just another event" until you tel
 
 
 
+## Appendix
 
+### Workshop Prep - Website
+
+::: {.fragment}
+#### No-Install Method (Posit Cloud) - Become a website developer in 5 minutes
+:::
+
+1.  **Create Account:** Log in to [posit.cloud](https://posit.cloud) (Free Tier).
+2.  **Import Template:**
+    * Click **New Project** > **New Project from Git Repository**.
+    * Paste this URL: `https://github.com/CCIDM/portfolio-website-template.git`
+3.  **Edit:** Open `index.qmd` to customize your content.
+4.  **Publish:**
+    * Go to Terminal tab, enter `quarto publish netlify`. You will be prompted to login to netlify. Create account or login.
 
 
 
