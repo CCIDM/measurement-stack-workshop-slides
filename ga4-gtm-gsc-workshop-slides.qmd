@@ -48,11 +48,15 @@ format:
 - **The Goal:** Gaining the ability to not just plan campaigns, but measure and optimize them.
 
 ::: {.notes}
-"Welcome everyone. Today isn't just about concepts; it is about the 'Why' behind the data."
+"So, why are we here?
 
-"In your classes, you learn marketing theory. Today, we make the move from theory to Marketing Operations."
+In your classes, you spend a lot of time on Marketing Theory—the 4 Ps, consumer behavior, segmentation. That is the 'Art' of marketing.
 
-"Employers need people who can prove their strategies work. By the end of this, you will have the technical skills to gather the data that validates your marketing decisions."
+Today, we are moving into Marketing Operations. This is the 'Science.'
+
+Employers aren't just looking for people who can come up with a great idea; they need people who can prove that idea actually worked. By the end of this session, you won't just be guessing if a campaign was successful—you will have the technical skills to gather the hard data that validates your decisions.
+
+The goal is simple: We are moving you from 'Campaign Planner' to 'Performance Optimizer'."
 
 :::
 
@@ -66,6 +70,16 @@ format:
 - **Campaign Tracking (15 Min):** Mastering UTM parameters
 - **Performance Measurement (10 Min):** Defining and tracking Key Events
 
+
+::: {.notes}
+"Here is our roadmap for the next 90 minutes.
+
+1.  **Conceptual Framework:** We’ll start with the big picture—how the 'Trinity' of Google tools talk to each other.
+2.  **Technical Implementation:** This is the hands-on part. We will actually set up the environment.
+3.  **Search Visibility:** We’ll look at Google Search Console to understand organic traffic.
+4.  **Campaign Tracking:** We’ll master UTM parameters—the secret to tracking your specific links.
+5.  **Performance Measurement:** Finally, we’ll define 'Key Events' so we can track what actually matters to the business."
+:::
 
 ---
 
@@ -86,6 +100,16 @@ After taking this workshop, participants should be able to:
 :::
 
 ::::
+
+::: {.notes}
+"If you zone out, here is what you need to walk away with.
+
+On the left, we have the **Setup**: You will be able to explain and configure GA4, GTM, and GSC. You’ll also learn how to debug them—because things *will* break, and you need to know how to fix them.
+
+On the right, we have the **Strategy**: You’ll learn to connect GSC for SEO insights, build standardized UTMs so your data isn't messy, and set up Key Events to measure ROI.
+
+If you can do these six things, you are already ahead of 90% of entry-level marketing applicants."
+:::
 
 ---
 
@@ -143,6 +167,16 @@ Digital marketing roles fall into **4 categories**, and each needs this data sta
 Source: [CPP MSDM Career Outlook - Typical Job Titles](https://www.cppmsdm.com/career_outlook_salary_digital_marketing#typical-job-titles)
 :::
 
+::: {.notes}
+"I often hear, 'I'm a creative, I don't need to know code.' That is incorrect. Digital marketing roles fall into four categories, and *all* of them rely on this stack.
+
+1.  **Content & Creative:** If you write copy or design ads, you need **UTMs**. Otherwise, you’re just chasing 'vanity metrics' like likes. You need to know if your specific creative drove a sale.
+2.  **Technical & Performance:** If you do SEO or PPC, you live and die by **GSC** and **GTM**. You need to deploy tracking pixels instantly without waiting for a developer.
+3.  **Data & Analytics:** For the analysts, **GTM** is your plumbing. If the plumbing leaks, your Python or SQL models will be drinking dirty water. 'Garbage in, garbage out.'
+4.  **Strategy & Leadership:** For the future managers, you hold the budget. You need to enforce **Standardization**. If your team isn't using UTMs correctly, you can't make good budget decisions."
+:::
+
+
 ---
 
 ## Trinity of Google Data Collection (10 Min)
@@ -156,9 +190,9 @@ Source: [CPP MSDM Career Outlook - Typical Job Titles](https://www.cppmsdm.com/c
   ![](images/ic_tag_manager.svg){.icon}
 </div>
 
-#### "The Brain/Eyes"
+#### 1. Collect (Tags & Triggers)
 
-**Tag management system** that lets you configure, deploy, and troubleshoot tracking tags from a web interface—no code changes needed. (Facebook, EventBrite, etc.)
+Use this to **control the data pipeline.** You configure **Tags** (what data to send) and **Triggers** (when to send it) without needing to edit the website code every time.
 :::
 
 ::: {.column width="33.33%"}
@@ -168,9 +202,10 @@ Source: [CPP MSDM Career Outlook - Typical Job Titles](https://www.cppmsdm.com/c
   ![](images/ic_analytics.svg){.icon}
 </div>
 
-#### "The Database"
+#### 2. Analyze
 
-**Next-gen analytics** collecting event-based data from websites/apps to understand full customer journeys with privacy controls and predictive insights.
+Use this to **understand user behavior.** This is where you view reports, analyze traffic sources, and measure if your marketing campaigns are generating revenue.
+
 :::
 
 ::: {.column width="33.33%"}
@@ -180,14 +215,25 @@ Source: [CPP MSDM Career Outlook - Typical Job Titles](https://www.cppmsdm.com/c
   ![](images/logo_search_console.svg){.icon}
 </div>
 
-#### "The Search Health Check"
+#### 3. Optimize
 
-**Webmaster tool** to monitor indexing, search performance, crawl errors, and optimize site visibility in Google Search results.
+Use this to **monitor search health.** This provides technical feedback on site errors, indexing issues, and organic keyword performance that GA4 cannot see.
 :::
 
 :::
 
 
+::: {.notes}
+"Let's simplify the ecosystem. I call this the 'Trinity of Data Collection.'
+
+First, **Google Tag Manager (GTM)**. Think of this as the **Brain**. It controls the data pipeline. You tell it *what* to send (Tags-like GA4, Meta Pixel) and *when* to send it (Triggers). It sits between your website and the rest of the world.
+
+Second, **Google Analytics 4 (GA4)**. This is the **Database**. It stores the information and visualizes it. It tells you *what* users are doing on the site.
+
+Third, **Google Search Console (GSC)**. This is the **Health Check**. It tells you how Google Search *sees* your site. It provides data that GA4 cannot see, like indexing errors and organic keyword rankings."
+:::
+
+---
 
 ## How they Connect
 
@@ -200,11 +246,15 @@ Source: [CPP MSDM Career Outlook - Typical Job Titles](https://www.cppmsdm.com/c
 - Link <span class="text-teal">GSC</span> to <span class="text-cpp-gold">GA4</span> for organic query + landing-page reporting
 
 ::: {.notes}
-- Trinity of Data Collection:
-  a. GTM (Google Tag Manager): The Brain, Controls what data is sent and when.  
-  b. GA4 (Google Analytics 4): The Database, Stores and reports the data.  
-  c. GSC (Google Search Console): The Search Health Check: Monitors organic search visibility.
-- Instructional design angle: students should be able to name the role of each tool in one sentence.
+"Visually, it looks like this.
+
+Notice the flow:
+You do **not** install GA4 code directly on your website anymore. That is the old way.
+Instead, you install **GTM (The Green Box)** on your site.
+GTM then fires the data into **GA4 (The Gold Box)**.
+Separately, we link **GSC (The Teal Box)** to GA4 so we can pull SEO data into our reports.
+
+If you remember one thing from this slide: **GTM is the messenger; GA4 is the destination.**"
 :::
 
 ---
@@ -296,6 +346,17 @@ It is built in **Quarto** and is already connected/setup for us to analyze.
 :::
 :::
 
+
+::: {.notes}
+"There are two ways websites are built today.
+
+1.  **CMS (Content Management Systems):** Wix, WordPress, Squarespace. These are drag-and-drop. They are easy, but sometimes inflexible.
+2.  **Publication Systems:** Like Quarto or GitHub Pages. These are preferred by technical marketers and academics because they are free, reproducible, and you have total control over the code.
+
+For today, we are using the **Rising Stars Muay Thai** website. It’s a real-world site built in Quarto and linked to all these services, which gives us a perfect sandbox to demonstrate these concepts."
+:::
+
+
 ---
 
 ## The GTM/GA4 Setup Flow
@@ -311,6 +372,23 @@ Before we touch the code/website, we need the containers.
 3.  **Create GA4 Property:** Get your Measurement ID (`G-XXXXXXXX`).
 4.  **Connect in GTM:** Create a "Google Tag" inside GTM and paste your GA4 ID.
 5.  **Publish:** Push the changes in GTM to make GA4 live.
+
+
+::: {.notes}
+"Here is the order of operations. It’s a 5-step process.
+
+We don't just 'turn on' analytics. We have to build the containers first.
+1.  **Create the GTM Account** and get the ID.
+2.  **Install the GTM Code** on the website.
+3.  **Create the GA4 Property** and get that ID.
+4.  **Connect them:** Put the GA4 ID *inside* GTM.
+5.  **Publish:** Push the 'Go' button.
+
+Let's walk through creating the GTM container first."
+:::
+
+---
+
 
 ## Create GTM Container
 
@@ -337,6 +415,16 @@ Before we touch the code/website, we need the containers.
 
 ::::
 
+::: {.notes}
+"Why do we start with GTM?
+
+Think of GTM as an empty box. GA4 is just one tool you put inside that box. Later, if you want to add a Facebook Pixel or LinkedIn Insight Tag, you put them in the box too.
+
+If you didn't use GTM, you’d have to edit your website's source code every single time you wanted to add a marketing tool. With GTM, you install the code **once**, and then manage everything else from the Google dashboard.
+
+Log in to Tag Manager, create an account, select 'Web', and it will give you two snippets of code—one for the Head, one for the Body."
+:::
+
 ---
 
 
@@ -361,6 +449,16 @@ Before we touch the code/website, we need the containers.
 :::
 
 ::::
+
+::: {.notes}
+"Now, let's go to Google Analytics and create the property.
+
+Go to Admin > Create Property.
+A common question I get is: 'Do I need a separate property for my mobile app and my website?'
+**No.** In GA4, we combine them. We want to track the *user*, not the device. If they visit on mobile and then on desktop, we want that data in one place.
+
+Once you save, copy the **Measurement ID**—it starts with `G-`. That is your destination address."
+:::
 
 ---
 
@@ -406,6 +504,16 @@ We will focus on the **Overview** reports to get a high-level health check of th
 :::
 
 ::::
+
+::: {.notes}
+"While we are in GA4, let's orient ourselves. There are three main reports you’ll use daily:
+
+1.  **Acquisition:** This answers 'Where did they come from?' Look at the *New Users by Channel* card. Is your SEO working? Are your ads driving traffic?
+2.  **Engagement:** This answers 'Is the site interesting?' Look at *Engagement Time*. If it’s under 10 seconds, you have a problem—people are landing and leaving.
+3.  **Explore:** This is for the data scientists. The standard reports tell you *what* happened; the Explore tab lets you build custom funnels to figure out *why* it happened."
+:::
+
+
 ---
 
 ## Connect GA4 to GTM
@@ -431,7 +539,15 @@ We will focus on the **Overview** reports to get a high-level health check of th
 
 > **Note:** Until you hit **Publish**, your changes are only saved in a "Draft" version.
 
+::: {.notes}
+"Now, the handshake. We have GTM and we have GA4. Let's introduce them.
 
+Inside **GTM**, create a new tag. Select 'Google Tag'.
+Paste that `G-` Measurement ID we just copied.
+For the Trigger, select **Initialization - All Pages**. This ensures analytics loads immediately when a user visits.
+
+**Crucial Step:** You must hit **Submit** and **Publish**. In GTM, nothing is live until you Publish. If you just click 'Save', it sits in a draft folder and does nothing."
+:::
 
 
 ---
@@ -453,6 +569,17 @@ We will focus on the **Overview** reports to get a high-level health check of th
 If you see events populating the timeline in real-time, your connection is successful. If the timeline is empty, check if your ad blocker is on!
 :::
 
+::: {.notes}
+"Trust, but verify.
+
+How do we know it worked?
+Go to GA4, specifically the **DebugView** under Admin.
+Open your website in a new tab and click around.
+If you see blue icons popping up on the timeline in real-time, congratulations—you are tracking data.
+
+If the timeline is empty, check your browser extensions. Ad Blockers will kill your ability to debug your own work."
+:::
+
 ---
 
 
@@ -470,6 +597,14 @@ If you see events populating the timeline in real-time, your connection is succe
 * **GSC** tells you *how* users found you (keywords, rankings).
 * **Together:** You see the full picture of your SEO performance.
 
+:::
+
+::: {.notes}
+"We’ve handled the user behavior (GA4). Now let's handle the search engine (GSC).
+
+Google Search Console is the only place where Google tells you exactly how often your site appeared in search results and which keywords you rank for.
+
+Our goal here is to verify ownership and link it to GA4 so we can see that keyword data inside our analytics reports."
 :::
 
 ---
@@ -498,6 +633,16 @@ When you click "Add Property" in GSC, you have two choices:
 
 ::::
 
+::: {.notes}
+"When you add a site to GSC, you face a fork in the road: **Domain** vs **URL Prefix**.
+
+**Domain Property** is the 'Gold Standard'. It tracks *everything* attached to your name—http, https, www, mobile. But, it requires DNS verification, which means logging into GoDaddy or Namecheap.
+
+**URL Prefix** is the 'Lite Version'. It only tracks the specific URL you type in. However, it is much easier to verify.
+
+For a serious business, use Domain. For a quick project, URL Prefix is fine."
+:::
+
 ---
 
 ## Step 2: Verify Ownership
@@ -511,9 +656,12 @@ Google needs proof you own the site. Choose the method that fits your access lev
 | **HTML Tag** | Low | **URL Prefix.** WordPress/Wix users. Copy/paste a meta tag into your header. |
 | **GA4 / GTM** | **Lowest** | **URL Prefix.** If you *already* installed GA4/GTM (and have "Edit" permission), this verifies instantly! |
 
-::: {.callout-tip}
-## Pro Tip
-If you just set up GA4/GTM in the previous step, try the **Google Analytics** verification method first. It's one click!
+::: {.notes}
+"Google won't show you data unless you prove you own the site.
+
+If you chose **Domain Property**, you must use the DNS record method.
+If you chose **URL Prefix**, you have easier options.
+
 :::
 
 
@@ -533,6 +681,15 @@ Data doesn't appear automatically. You must **Link** and **Publish**.
 
 > **Result:** A new "Search Console" tab will appear in your main reporting menu, showing Queries and Landing Pages.
 
+::: {.notes}
+"Now, let's pull that search data into GA4.
+
+Go to GA4 Admin > Product Links > Search Console Links.
+Select your property and confirm.
+
+**One extra step people always forget:** By default, the reports are hidden. You have to go to the **Library** in the Reports section and 'Publish' the Search Console collection. Once you do that, a new tab appears on your dashboard showing you Organic Queries and Landing Pages."
+:::
+
 ---
 
 ## Campaign Tracking: UTM Parameters (15 Min)
@@ -550,6 +707,14 @@ Without UTMs, GA4 can usually tell you **where** a user came from (e.g., "They c
 UTM parameters are "tags" we add to the end of a link. They force GA4 to record exactly what we tell it to record. Example in GA4 > Reports > User acquisition > First user source / medium
 :::
 
+::: {.notes}
+"We are shifting gears now to **Campaign Tracking**.
+
+GA4 is smart, but it’s not psychic. It knows a user came from 'Facebook', but it doesn't know *how* or *why*. Did they click a paid ad? A free post? Was it the Spring Sale or the Winter Clearance?
+
+This is the 'Blind Spot'. To fix it, we use **UTMs**. These are little tags we add to the end of a URL that force GA4 to record exactly what we want it to."
+:::
+
 ---
 
 ## Standard UTM Parameters
@@ -563,10 +728,13 @@ UTM parameters are "tags" we add to the end of a link. They force GA4 to record 
 | `utm_term` | **The Keywords** (Paid Search) | `running+shoes`, `marketing+course` |
 
 ::: {.notes}
-- **Source:** The specific place the user was before they clicked.
-- **Medium:** The broadest category of traffic.
-- **Campaign:** The specific initiative.
-- **Content:** Used for A/B testing (e.g., Red Button vs. Blue Button).
+"There are 5 standard parameters. You should know the top three by heart:
+
+1.  **Source:** The 'Who'. Where is the user right now? (e.g., Google, Newsletter, Facebook).
+2.  **Medium:** The 'How'. How did they get here? (e.g., CPC, Email, Social).
+3.  **Campaign:** The 'Why'. What initiative is this? (e.g., Spring_Sale).
+
+If you are consistent with these, your reporting becomes crystal clear. You can tell exactly which email blast generated the most revenue."
 :::
 
 ---
@@ -588,6 +756,14 @@ If five people on your team name campaigns differently, your reports will be unr
 * *Bad:* `spring-sale`, `Spring_Sale`, `springsale26`
 * *Good:* `spring_sale_2026` (Standardized)
 
+::: {.notes}
+"Warning: UTMs are fragile.
+
+**Rule 1:** They are case-sensitive. 'Email', 'email', and 'EMAIL' will show up as three separate rows in your report. **Always use lowercase.**
+
+**Rule 2:** Standardization. If I name a campaign `spring-sale` and my colleague names it `Spring_Sale`, our data is fragmented. As managers, you must enforce a naming convention (like snake_case) across the team."
+:::
+
 ---
 
 ## Interactive Exercise
@@ -606,6 +782,17 @@ If five people on your team name campaigns differently, your reports will be unr
 
 3.  **Result:** Copy the generated URL and test it.
 
+::: {.notes}
+"Let's try it. I want everyone to open the **Google Campaign URL Builder**.
+
+Imagine we are posting a link on LinkedIn for a 'Spring Workshop'.
+We enter:
+* **Source:** linkedin
+* **Medium:** social
+* **Campaign:** spring_workshop_2026
+
+The tool generates a long URL. When someone clicks that long link, GA4 captures those three pieces of data perfectly. This is how you prove ROI."
+:::
 
 
 ---
@@ -628,6 +815,19 @@ In GA4, you measure **Key Events**.
 In Google Ads, you bid on **Conversions**.
 :::
 
+::: {.notes}
+"Finally, let's talk about success.
+
+In 2025, Google changed their terminology.
+We used to call important actions 'Conversions'. Now, in GA4, they are called **Key Events**.
+
+An **Event** is anything that happens (a scroll, a click).
+A **Key Event** is something important that happens (a purchase, a signup).
+The term **Conversion** is now reserved strictly for Google Ads bidding.
+
+We need to tell GA4 which events are 'Key'."
+:::
+
 ---
 
 ## Step 1: Create the Trigger (The "When")
@@ -642,6 +842,16 @@ In Google Tag Manager:
     * *(Or `/confirmed`, `/success` - whatever your URL is).*
 
 > **Logic:** We only want this to fire when a user actually lands on the confirmation page.
+
+::: {.notes}
+"Let's say we want to track a 'Lead'. Usually, when someone fills out a form, they are redirected to a 'Thank You' page.
+
+In **GTM**, we create a Trigger.
+We tell GTM: 'Fire this trigger ONLY when the **Page Path** contains `/thank-you`'.
+
+This is the logic: If the user sees the Thank You page, they must have filled out the form."
+:::
+
 
 ---
 
@@ -662,6 +872,16 @@ In Google Tag Manager:
 Using Google's [Recommended Event Names](https://developers.google.com/analytics/devguides/collection/ga4/reference/events) unlocks automatic reporting features in the dashboard.
 :::
 
+::: {.notes}
+"Now we attach that Trigger to a Tag.
+
+Create a new **GA4 Event Tag**.
+Name the event `generate_lead`.
+**Note:** Use the standard Google names (like `generate_lead`, `purchase`, `sign_up`). If you use these standard names, GA4 automatically builds better reports for you.
+
+Attach the 'Thank You Page' trigger and **Publish**."
+:::
+
 ---
 
 ## Step 4: The Handshake (GA4)
@@ -678,12 +898,58 @@ Even if GTM sends the event, GA4 treats it as "just another event" until you tel
 > **Why do this manually?**
 > Automatic detection can take 24 hours. Creating it manually ensures it is tracked as a Key Event **immediately** from the moment you publish.
 
+::: {.notes}
+"Last step. GTM is sending the event `generate_lead` to GA4.
+But right now, GA4 just thinks it's a normal event, like a page scroll.
 
+To promote it to a **Key Event**:
+Go to GA4 Admin > Events.
+Create a New Key Event and type in `generate_lead` exactly as you set it up in GTM.
 
+Now, every time someone hits that Thank You page, your 'Key Events' counter goes up by one. That is your measure of success."
+:::
 
-## Thank you
+---
 
+## Thank You & What's Next?
 
+### **The Spring 2026 Analytics Series**
+
+You have completed **Workshop 1: Collection**. Here is the roadmap for the rest of the semester:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Next Up: Workshop 2**
+**"The Data Warehouse"**
+*(BigQuery + SQL + Looker)*
+
+* **The Problem:** GA4 deletes user data after 14 months and applies "sampling" (guessing) to large reports.
+* **The Solution:** We will connect GA4 to **BigQuery** to own our raw data forever and use SQL for deep analysis.
+:::
+
+::: {.column width="50%"}
+**Future Sessions**
+
+* **Workshop 3: Scale Analysis**
+    * *(R + DuckDB)*: How to process millions of rows on a laptop without crashing it.
+* **Workshop 4: Production Reporting**
+    * *(Quarto + Automation)*: Auto-scheduling reports for stakeholders.
+:::
+
+::::
+
+::: {.notes}
+"We have just finished **Workshop 1: Measurement & Collection**. You now have a live data pipeline.
+
+But this is just the foundation. As you grow, GA4 has limits. It samples data when traffic gets high, and it deletes user-level history after 14 months.
+
+In **Workshop 2**, we will solve this by building a **Data Warehouse**. We will connect GA4 to **BigQuery** so you can own your raw data forever and use SQL to ask questions the standard reports can't answer.
+
+Later in the semester, **Workshop 3** will teach you how to analyze that 'big-ish' data using high-performance R tools, and **Workshop 4** will show you how to automate the whole thing into production-grade reports.
+
+Thank you for your time, and I look forward to seeing you at the next session!"
+:::
 
 
 ## Appendix
