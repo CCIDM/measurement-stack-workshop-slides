@@ -372,7 +372,7 @@ We will focus on the **Overview** reports to get a high-level health check of th
 
 ::: {.column width="33%"}
 ### 1. Acquisition
-*(Reports > Acquisition > Overview)*
+*(Reports > Generate Leads > Overview)*
 
 * **The Question:** "Where is traffic coming from?"
 * **Key Card:** **New Users by Channel**.
@@ -385,13 +385,13 @@ We will focus on the **Overview** reports to get a high-level health check of th
 
 ::: {.column width="33%"}
 ### 2. Engagement
-*(Reports > Engagement > Overview)*
+*(Reports > Understand web and/or app traffic > Overview)*
 
 * **The Question:** "Is the site interesting?"
 * **Key Metric:** **Average Engagement Time**.
 * **Look For:**
     * **Time:** (e.g., *1m 35s*). If this is low (<10s), users are leaving immediately.
-    * **Top Pages:** Which specific products (e.g., *Apparel*) get the most views?
+    * **Top Pages:** Which specific pages get the most views?
 
 :::
 
@@ -670,7 +670,7 @@ Even if GTM sends the event, GA4 treats it as "just another event" until you tel
 
 **The "Immediate Fix" Method:**
 
-1.  **Go to:** Admin > Data Display > **Key Events**.
+1.  **Go to:** Admin > Data Display > **Events**.
 2.  **Click:** **New Key Event**.
 3.  **Name:** Enter `generate_lead` exactly as you typed it in GTM.
 4.  **Save.**
