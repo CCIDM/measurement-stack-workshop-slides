@@ -36,7 +36,6 @@ format:
 ## Live slides available at <https://ccidm.github.io/measurement-stack-workshop-slides/ga4-gtm-gsc-workshop-slides.html>
 :::
 
--   Jae Jung, Ph.D., Professor of Marketing, Director of CCIDM
 -   Jarrod Griffin, Master's Student - M.S. Digital Marketing, Graduate Fellow, CCIDM
 
 
@@ -250,9 +249,9 @@ Third, **Google Search Console (GSC)**. This is the **Health Check**. It tells y
 
 Notice the flow:
 You do **not** install GA4 code directly on your website anymore. That is the old way.
-Instead, you install **GTM (The Green Box)** on your site.
-GTM then fires the data into **GA4 (The Gold Box)**.
-Separately, we link **GSC (The Teal Box)** to GA4 so we can pull SEO data into our reports.
+Instead, you install **GTM** on your site.
+GTM then fires the data into **GA4**.
+Separately, we link **GSC** to GA4 so we can pull SEO data into our reports.
 
 If you remember one thing from this slide: **GTM is the messenger; GA4 is the destination.**"
 :::
@@ -276,10 +275,10 @@ Use one **Google account** across tools.
 ## Technical Implementation - GTM/GA4 (25 Min)
 
 ### **Goal**
-Connect our **Quarto** site to the **Google Marketing Platform** (GA4 + GTM).
+Connect our **website** to the **Google Marketing Platform** (GA4 + GTM).
 
 ### **Assumptions**
-To follow along, you need:
+You need:
 
 1.  **A Published Website:** Your site is live (e.g., Netlify, GitHub Pages).
 2.  **Admin Access:** You have the ability to edit the source code or CMS settings.
