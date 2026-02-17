@@ -29,18 +29,11 @@ format:
 
 ---
 
-
-## Greetings and Introductions
+## Introduction & Orientation
 
 ::: {.callout-tip}
 ## Live slides available at <https://ccidm.github.io/measurement-stack-workshop-slides/ga4-gtm-gsc-workshop-slides.html>
 :::
-
--   Jarrod Griffin, Master's Student - M.S. Digital Marketing, Graduate Fellow, CCIDM
-
-
-
-## Introduction & Orientation
 
 - **The Objective:** Moving from marketing theory to Marketing Operations.
 - **The Career Impact:** Employers need people who can prove their strategies work. By the end of this, you will have the technical skills to gather the data that validates your marketing decisions.
@@ -522,7 +515,7 @@ We will focus on the **Overview** reports to get a high-level health check of th
 ::: {.column width="50%"}
 ### The Connection
 1.  **New Tag:** Select **Google Tag**.
-2.  **ID:** Paste `G-XXXXXXXX`.
+2.  **ID:** Paste GA4 Measurement ID `G-XXXXXXXX`.
 3.  **Trigger:** Choose **Initialization - All Pages**.
 4.  **Save:** Name it "GA4 Config".
 :::
@@ -711,7 +704,9 @@ UTM parameters are "tags" we add to the end of a link. They force GA4 to record 
 
 GA4 is smart, but it’s not psychic. It knows a user came from 'Facebook', but it doesn't know *how* or *why*. Did they click a paid ad? A free post? Was it the Spring Sale or the Winter Clearance?
 
-This is the 'Blind Spot'. To fix it, we use **UTMs**. These are little tags we add to the end of a URL that force GA4 to record exactly what we want it to."
+This is the 'Blind Spot'. To fix it, we use **UTMs**. These are little tags we add to the end of a URL that force GA4 to record exactly what we want it to.
+
+Urchin Tracking Module (UTM)"
 :::
 
 ---
